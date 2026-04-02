@@ -8,8 +8,6 @@ import { Separator } from "@/components/ui/separator";
 import { GraduationCap, Github, Chrome, ArrowRight, Eye, EyeOff } from "lucide-react";
 import GitLabIcon from "@/components/icons/GitLabIcon";
 import ChatButton from "@/components/chat/ChatButton";
-import { GraduationCap, Github, Chrome, ArrowRight, Eye, EyeOff } from "lucide-react";
-import GitLabIcon from "@/components/icons/GitLabIcon";
 
 const Login = () => {
   const navigate = useNavigate();
