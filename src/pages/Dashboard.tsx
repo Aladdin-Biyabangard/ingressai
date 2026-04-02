@@ -2,7 +2,7 @@ import { useState } from "react";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import CourseCard from "@/components/dashboard/CourseCard";
 import StatsBar from "@/components/dashboard/StatsBar";
-import ChatWidget from "@/components/chat/ChatWidget";
+import ChatButton from "@/components/chat/ChatButton";
 
 const courses = [
   {
@@ -99,7 +99,7 @@ const Dashboard = () => {
         </div>
       </main>
 
-      <ChatWidget />
+      <ChatButton />
     </div>
   );
 };
