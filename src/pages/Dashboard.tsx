@@ -99,7 +99,7 @@ const Dashboard = () => {
         </div>
       </main>
 
-      <ChatWidget />
+      <ChatButton />
     </div>
   );
 };
