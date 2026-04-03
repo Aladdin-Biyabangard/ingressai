@@ -21,6 +21,10 @@ export function LanguageSwitcher({ className, variant = "default" }: Props) {
   const active = currentLocaleCode(i18n);
 
   const switchTo = (next: Locale) => {
+    void i18n.changeLanguage(next);
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = next;
+    }
     const segments = location.pathname.split("/").filter(Boolean);
     if (segments.length === 0) {
       navigate(`/${next}${location.search}${location.hash}`);

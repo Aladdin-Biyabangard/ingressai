@@ -8,7 +8,8 @@ import {
   type ReactNode,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { BookOpen, Bot, ChevronLeft, Send, User } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { BookOpen, Bot, ChevronLeft, Send, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
@@ -17,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { useGlobalData, type GlobalCategory, type GlobalCourse } from "@/contexts/GlobalDataContext";
 import { tHelp } from "@/lib/helpCenterCopy";
+import { isSupportedLocale } from "@/lib/i18n/constants";
 import { formatChatMessageTime } from "@/lib/utils/formatChatMessageTime";
 import {
   getChatBotResponse,
@@ -24,7 +26,11 @@ import {
   type ChatHistoryRow,
 } from "@/lib/utils/api/chat";
 import { getLocalizedCategories } from "@/lib/utils/api/categories";
-import { getLocalizedCourses } from "@/lib/utils/api/courses";
+import {
+  chatLangFromCourseId,
+  getCourseShortInfoForChat,
+  getLocalizedCourses,
+} from "@/lib/utils/api/courses";
 
 type Message = {
   id: string;
@@ -141,6 +147,8 @@ type SheetStep = "lang" | "mode" | "categories" | "courses";
 
 export function HelpCenterConversation({ variant }: { variant: Variant }) {
   const { i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
   const languageOptions = useMemo(
     () => [
       { id: "az", label: tHelp("helpCenterLanguageAz") },
@@ -161,6 +169,18 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
   const [selectedCourse, setSelectedCourse] = useState<GlobalCourse | null>(null);
   const [localizedCategories, setLocalizedCategories] = useState<GlobalCategory[]>([]);
   const [localizedCourses, setLocalizedCourses] = useState<GlobalCourse[]>([]);
+  /** API sorğuları üçün: state gecikəndə də son seçilmiş kurs id-si göndərilsin. */
+  const activeCourseForChatRef = useRef<GlobalCourse | null>(null);
+  const commitSelectedCourse = useCallback((course: GlobalCourse | null) => {
+    activeCourseForChatRef.current = course;
+    setSelectedCourse(course);
+  }, []);
+  /** Kurs ləğv: sol paneldə açıq kateqoriya/kurs siyahılarını da bağlayır. */
+  const clearCourseSelectionFromComposer = useCallback(() => {
+    commitSelectedCourse(null);
+    setSelectionMode(null);
+    setSelectedCategoryId(null);
+  }, [commitSelectedCourse]);
   const messageListRef = useRef<HTMLDivElement>(null);
   const chatRequestInFlightRef = useRef(false);
 
@@ -195,6 +215,14 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
   }, [historyNextBeforeId]);
 
   useEffect(() => {
+    setMessages((prev) => {
+      if (!prev.some((m) => m.id === "welcome")) return prev;
+      const text = tHelp("helpCenterWelcome");
+      return prev.map((m) => (m.id === "welcome" ? { ...m, text } : m));
+    });
+  }, [i18n.language]);
+
+  useEffect(() => {
     let cancelled = false;
     initialScrollDoneRef.current = false;
 
@@ -219,6 +247,51 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
       setHistoryInitialLoading(true);
       try {
         const data = await getChatHistory({ size: 20 });
+        if (cancelled) return;
+
+        if (data.courseId) {
+          const cid = data.courseId;
+          const lang = chatLangFromCourseId(cid);
+          await i18n.changeLanguage(lang);
+          if (cancelled) return;
+          setSelectedLang(lang);
+          setListLoading(true);
+          try {
+            const [categoriesRes, coursesRes] = await Promise.all([
+              getLocalizedCategories(lang),
+              getLocalizedCourses(lang),
+            ]);
+            if (cancelled) return;
+            const info = await getCourseShortInfoForChat(cid);
+            if (cancelled) return;
+            let cats = categoriesRes;
+            let crs = coursesRes;
+            if (info) {
+              const catId = info.category.categoryId;
+              const catName = info.category.categoryName;
+              if (!cats.some((c) => String(c.id) === String(catId))) {
+                cats = [{ id: catId, name: catName }, ...cats];
+              }
+              const courseRow: GlobalCourse = { id: info.id, name: info.name };
+              if (!crs.some((c) => String(c.id) === String(info.id))) {
+                crs = [courseRow, ...crs];
+              }
+              setLocalizedCategories(cats);
+              setLocalizedCourses(crs);
+              setSelectionMode("category");
+              setSelectedCategoryId(catId);
+              commitSelectedCourse(courseRow);
+            } else {
+              setLocalizedCategories(categoriesRes);
+              setLocalizedCourses(coursesRes);
+              const fromList = coursesRes.find((c) => String(c.id) === String(cid));
+              commitSelectedCourse(fromList ?? { id: cid, name: "" });
+            }
+          } finally {
+            if (!cancelled) setListLoading(false);
+          }
+        }
+
         if (cancelled) return;
         if (data.messages.length === 0) {
           setMessages([
@@ -261,7 +334,7 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     return () => {
       cancelled = true;
     };
-  }, [isAuthenticated]);
+  }, [isAuthenticated, i18n, commitSelectedCourse]);
 
   useEffect(() => {
     if (historyInitialLoading) return;
@@ -388,11 +461,22 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
 
   const handleSelectLanguage = async (lang: string) => {
     if (chatLoading || listLoading) return;
+    if (!isSupportedLocale(lang)) return;
+
+    void i18n.changeLanguage(lang);
+    if (typeof document !== "undefined") {
+      document.documentElement.lang = lang;
+    }
+    const segments = location.pathname.split("/").filter(Boolean);
+    if (segments.length > 0 && isSupportedLocale(segments[0])) {
+      segments[0] = lang;
+      navigate(`/${segments.join("/")}${location.search}${location.hash}`, { replace: true });
+    }
 
     setSelectedLang(lang);
     setSelectionMode(null);
     setSelectedCategoryId(null);
-    setSelectedCourse(null);
+    commitSelectedCourse(null);
     await fetchLocalizedLists(lang);
 
     pushMessages([
@@ -420,7 +504,7 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
 
     setSelectionMode(mode);
     setSelectedCategoryId(null);
-    setSelectedCourse(null);
+    commitSelectedCourse(null);
 
     if (mode === "category") {
       pushMessages([
@@ -448,7 +532,7 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
 
   const handleSelectCategory = (category: GlobalCategory) => {
     setSelectedCategoryId(category.id);
-    setSelectedCourse(null);
+    commitSelectedCourse(null);
     pushMessages([
       { id: newLocalId(), sender: "user", text: getEntityLabel(category) },
       {
@@ -489,9 +573,14 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     ]);
     scrollMessagesEnd("smooth");
 
+    const courseIdForRequest =
+      course != null && course.id != null && course.id !== ""
+        ? course.id
+        : activeCourseForChatRef.current?.id ?? null;
+
     try {
       const response = await getChatBotResponse({
-        courseId: course?.id ?? null,
+        courseId: courseIdForRequest,
         lang,
         customMessage,
         userId: user?.id ?? null,
@@ -536,7 +625,7 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     if (!course?.id || chatLoading) return;
 
     const courseName = getEntityLabel(course);
-    setSelectedCourse(course);
+    commitSelectedCourse(course);
     pushMessages([
       { id: newLocalId(), sender: "user", text: courseName },
       {
@@ -591,9 +680,10 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     }
   }, [sheetStep, selectionMode]);
 
-  const pickCourseFromSheet = async (course: GlobalCourse) => {
-    await handleSelectCourse(course);
+  /** Sheet-i dərhal bağla ki, mobil cihazda cavab gözlənərkən söhbət görünsün. */
+  const pickCourseFromSheet = (course: GlobalCourse) => {
     setCourseSheetOpen(false);
+    void handleSelectCourse(course);
   };
 
   const sheetTitle =
@@ -865,15 +955,28 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
                   </p>
                 </div>
               </div>
-              <Button
-                type="button"
-                variant="secondary"
-                size="sm"
-                className="h-10 min-h-10 w-full shrink-0 sm:h-9 sm:min-h-9 sm:w-auto"
-                onClick={openCourseSheet}
-              >
-                {tHelp("helpCenterChangeCourse")}
-              </Button>
+              <div className="flex w-full min-w-0 shrink-0 flex-row items-stretch gap-2 sm:w-auto sm:items-center">
+                <Button
+                  type="button"
+                  variant="secondary"
+                  size="sm"
+                  className="h-10 min-h-10 min-w-0 flex-1 sm:h-9 sm:min-h-9 sm:flex-none"
+                  onClick={openCourseSheet}
+                >
+                  {tHelp("helpCenterChangeCourse")}
+                </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="icon"
+                  className="h-10 min-h-10 w-10 shrink-0 sm:h-9 sm:min-h-9 sm:w-9"
+                  disabled={chatLoading}
+                  onClick={clearCourseSelectionFromComposer}
+                  aria-label={tHelp("helpCenterClearCourseAria")}
+                >
+                  <X className="h-4 w-4 shrink-0" aria-hidden />
+                </Button>
+              </div>
             </div>
           )}
           {!selectedCourse && (

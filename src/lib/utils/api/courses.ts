@@ -1,4 +1,4 @@
-import { customAxios } from "@/lib/axios";
+import { courseMsAxios, customAxios } from "@/lib/axios";
 
 export type LocalizedCourse = {
   id: string | number;
@@ -50,14 +50,11 @@ export function chatLangFromCourseId(courseId: string): "az" | "en" | "ru" {
   return "en";
 }
 
-export async function getCourseShortInfoForChat(
-  courseId: string,
-  lang: string,
-): Promise<CourseShortInfoForChat | null> {
-  const lng = lang.trim() || "en";
+/** `GET v1/courses/{courseId}/info` — `…/api/` prefiksi yoxdur (courseMsAxios). */
+export async function getCourseShortInfoForChat(courseId: string): Promise<CourseShortInfoForChat | null> {
   try {
-    const path = `${lng}/v1/courses/${encodeURIComponent(courseId)}/info`;
-    const res = await customAxios.get<unknown>(path);
+    const path = `v1/courses/${encodeURIComponent(courseId)}/info`;
+    const res = await courseMsAxios.get<unknown>(path);
     return parseCourseShortInfoForChat(res.data);
   } catch {
     return null;

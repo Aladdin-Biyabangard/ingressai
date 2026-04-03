@@ -52,6 +52,10 @@ function createAxiosInstance(servicePath: string, options?: CreateInstanceOption
 
 export const quizAxios = createAxiosInstance(import.meta.env.VITE_QUIZ_MS_URL || "quiz");
 export const customAxios = createAxiosInstance(import.meta.env.VITE_BASE_URL || "course-ms/api");
+/** Course MS kökü `/api` olmadan (məs. `v1/courses/…/info`). `VITE_BASE_URL` sonundakı `/api` çıxarılır. */
+const courseMsRootPath =
+  (import.meta.env.VITE_BASE_URL || "course-ms/api").replace(/\/api\/?$/, "") || "course-ms";
+export const courseMsAxios = createAxiosInstance(courseMsRootPath);
 export const userAxios = createAxiosInstance(import.meta.env.VITE_USERS_MS_URL || "users");
 export const eventAxios = createAxiosInstance(import.meta.env.VITE_EVENT_MS_URL || "event-ms/api");
 export const certificateAxios = createAxiosInstance(

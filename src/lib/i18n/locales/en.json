@@ -171,6 +171,7 @@
     "helpCenterBrowseSection": "Browse",
     "helpCenterListsLoading": "Loading…",
     "helpCenterChangeCourse": "Change course",
+    "helpCenterClearCourseAria": "Clear course selection",
     "helpCenterActiveCourseHint": "Answers focus on this course.",
     "helpCenterSendAria": "Send message"
   }
