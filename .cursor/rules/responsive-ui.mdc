@@ -1,0 +1,42 @@
+---
+description: Responsive layout and mobile-first rules for pages and components
+alwaysApply: true
+---
+
+# Responsive UI (Ingress AI)
+
+## Breakpoints (Tailwind defaults)
+
+- **sm** 640px — phone landscape / large phone
+- **md** 768px — tablet
+- **lg** 1024px — laptop
+- **xl** 1280px — desktop
+- **2xl** 1536px — wide desktop
+
+Project `container` uses responsive horizontal padding (`1rem` → `1.5rem` → `2rem`). Prefer `max-w-*` + horizontal padding over fixed pixel widths.
+
+## Every new page
+
+1. Root wrapper: `min-h-screen-dvh min-w-0` (from `index.css`) so height works with mobile browser chrome and flex children can shrink.
+2. Horizontal padding: `px-safe` for screens with notches; add `sm:px-6` / `lg:px-8` where a max-width shell exists.
+3. Avoid horizontal overflow: use `min-w-0` on flex children that should truncate; use `truncate` or `break-words` on long text.
+4. Stacks: default to single column; use `sm:grid-cols-2`, `md:flex-row`, etc. for wider viewports — do not assume desktop-only layouts.
+
+## Every new component
+
+1. **Touch targets**: interactive controls at least ~44×44px on mobile (`h-11`, `min-h-11`, or `size` on `Button`).
+2. **Fixed UI** (FAB, drawers): use `fixed-fab-br` from `index.css` instead of raw `bottom-6 right-6` so home-indicator safe area is respected.
+3. **Back / corner links**: use `absolute-back-tl` when pinned to the top-left over full-screen layouts.
+4. **Headers with title + actions**: `min-w-0 flex-1` on the text block; `truncate` on headings if space is tight.
+5. **Dialogs / floating panels**: cap height with `max-h-[min(...,100dvh-…)]` and account for `env(safe-area-inset-*)` when fixed to an edge.
+
+## Global assets
+
+- `index.html` uses `viewport-fit=cover` so safe-area env vars apply.
+- Utilities live in `src/index.css` (`@layer utilities`): `px-safe`, `pt-safe`, `pb-safe`, `fixed-fab-br`, `absolute-back-tl`, `min-h-screen-dvh`.
+
+## Checklist before shipping UI
+
+- [ ] Layout usable at ~360px width (no clipped inputs or buttons).
+- [ ] No accidental horizontal scroll (except intentional carousels).
+- [ ] Sticky/fixed elements clear notches and home indicator where relevant.

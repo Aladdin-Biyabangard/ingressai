@@ -1,3 +1,9 @@
-# Welcome to your Lovable project
+# Ingress AI panel
 
-TODO: Document your project here
+Vite + React + TypeScript frontend.
+
+## Scripts
+
+- `npm run dev` — development server
+- `npm run build` — production build
+- `npm run preview` — preview production build

@@ -1,0 +1,23 @@
+---
+description: Multilingual UI (az / en / ru) for every page and user-visible string
+globs: src/pages/**/*.tsx
+alwaysApply: false
+---
+
+# i18n (Ingress AI)
+
+Supported locales: **az**, **en**, **ru** (`SUPPORTED_LOCALES` in `src/lib/i18n/constants.ts`). URLs are always `/{lang}/…` (see `App.tsx`, `LocaleLayout`). Axios `Accept-Language` already reads the first path segment.
+
+## When you add or edit a page under `src/pages/`
+
+1. **No raw user-facing strings** in JSX (headings, labels, buttons, toasts, placeholders, `aria-label`, Zod messages). Use `useTranslation()` from `react-i18next` and `t("group.key")`.
+2. **Add the same keys** to all three files: `src/lib/i18n/locales/en.json`, `az.json`, `ru.json`. Keep structure parallel (same nesting and key names).
+3. **Routing**: use `useLocalePrefix()` from `src/hooks/useLocalePrefix.ts` for `navigate(\`${prefix}/…\`)` and `<Link to={\`${prefix}/…\`}>`. Do not hardcode `"/dashboard"` without the locale prefix.
+4. **Forms (Zod)**: build schemas with `useMemo` from `t(…)` and/or extract a sub-component keyed by `i18n.language` so validation messages match the active language (see `Login.tsx`, `ForgotPassword.tsx`).
+5. **Help center copy**: use `tHelp(…)` from `src/lib/helpCenterCopy.ts` and add keys under `helpCenter` in the three JSON files. Interpolation uses i18n format: `{{varName}}`.
+6. **Optional**: add `LanguageSwitcher` from `src/components/i18n/LanguageSwitcher.tsx` where language should be obvious (auth flows already include it).
+
+## Naming
+
+- Group keys by feature: `login.*`, `verify.*`, `dashboard.*`, `common.*`, `validation.*`, etc.
+- Prefer stable English keys; translations live only in the locale JSON files.
