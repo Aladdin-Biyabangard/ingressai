@@ -1,6 +1,5 @@
 import { createContext, useContext, useMemo, type ReactNode } from "react";
-import type { LocalizedCategory } from "@/lib/utils/api/categories";
-import type { LocalizedCourse } from "@/lib/utils/api/courses";
+import type { LocalizedCategory, LocalizedCourse } from "@/lib/utils/api/courses";
 
 export type GlobalCategory = LocalizedCategory;
 export type GlobalCourse = LocalizedCourse;

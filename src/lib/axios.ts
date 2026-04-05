@@ -50,18 +50,11 @@ function createAxiosInstance(servicePath: string, options?: CreateInstanceOption
   return instance;
 }
 
-export const quizAxios = createAxiosInstance(import.meta.env.VITE_QUIZ_MS_URL || "quiz");
 export const customAxios = createAxiosInstance(import.meta.env.VITE_BASE_URL || "course-ms/api");
 /** Course MS kökü `/api` olmadan (məs. `v1/courses/…/info`). `VITE_BASE_URL` sonundakı `/api` çıxarılır. */
 const courseMsRootPath =
   (import.meta.env.VITE_BASE_URL || "course-ms/api").replace(/\/api\/?$/, "") || "course-ms";
 export const courseMsAxios = createAxiosInstance(courseMsRootPath);
-export const userAxios = createAxiosInstance(import.meta.env.VITE_USERS_MS_URL || "users");
-export const eventAxios = createAxiosInstance(import.meta.env.VITE_EVENT_MS_URL || "event-ms/api");
-export const certificateAxios = createAxiosInstance(
-  import.meta.env.VITE_CERTIFICATE_MS_URL || "certificate-ms/api",
-);
-export const blogAxios = createAxiosInstance(import.meta.env.VITE_BLOG_MS_URL || "blog-ms");
 export const chatAxios = createAxiosInstance(import.meta.env.VITE_CHAT_MS_URL || "chat-ms/api");
 
 /** Same service as chat by default; must use `withCredentials` for refresh cookies. */
@@ -77,11 +70,19 @@ type AuthInterceptorConfig = {
   onAuthFailure: () => void;
 };
 
-let chatAuthInterceptorsInstalled = false;
+type BearerInterceptorOptions = {
+  /** When true, do not send `Authorization` (e.g. public or cookie-only auth routes). */
+  skipAuthHeader?: (requestUrl: string | undefined) => boolean;
+};
 
-export function setupChatAuthInterceptors(config: AuthInterceptorConfig): void {
-  if (chatAuthInterceptorsInstalled) return;
-  chatAuthInterceptorsInstalled = true;
+function installBearerInterceptors(
+  instance: AxiosInstance,
+  config: AuthInterceptorConfig,
+  installedRef: { current: boolean },
+  options?: BearerInterceptorOptions,
+): void {
+  if (installedRef.current) return;
+  installedRef.current = true;
 
   let refreshInFlight: Promise<string | null> | null = null;
   const refreshOnce = (): Promise<string | null> => {
@@ -93,19 +94,22 @@ export function setupChatAuthInterceptors(config: AuthInterceptorConfig): void {
     return refreshInFlight;
   };
 
-  chatAxios.interceptors.request.use((req) => {
+  instance.interceptors.request.use((req) => {
     const t = config.getAccessToken();
-    if (t) {
+    const skip = options?.skipAuthHeader?.(req.url);
+    if (t && !skip) {
       req.headers.Authorization = `Bearer ${t}`;
     }
     return req;
   });
 
-  chatAxios.interceptors.response.use(
+  instance.interceptors.response.use(
     (res) => res,
     async (error) => {
       const status = error?.response?.status;
-      const original = error?.config as { _authRetry?: boolean; headers?: Record<string, string> } | undefined;
+      const original = error?.config as
+        | { _authRetry?: boolean; url?: string; headers?: Record<string, string> }
+        | undefined;
       if (status !== 401 || !original || original._authRetry) {
         return Promise.reject(error);
       }
@@ -116,8 +120,38 @@ export function setupChatAuthInterceptors(config: AuthInterceptorConfig): void {
         return Promise.reject(error);
       }
       original.headers = original.headers ?? {};
-      original.headers.Authorization = `Bearer ${next}`;
-      return chatAxios(original);
+      if (options?.skipAuthHeader?.(original.url)) {
+        delete original.headers.Authorization;
+      } else {
+        original.headers.Authorization = `Bearer ${next}`;
+      }
+      return instance(original);
     },
   );
+}
+
+const chatAuthInstalled = { current: false };
+const authMsAuthInstalled = { current: false };
+
+export function setupChatAuthInterceptors(config: AuthInterceptorConfig): void {
+  installBearerInterceptors(chatAxios, config, chatAuthInstalled);
+}
+
+/** Cookie-only or public — Spring must not require Bearer here; refresh uses `Path=/api/v1/auth` cookie + `withCredentials`. */
+const AUTH_MS_SKIP_BEARER_SUBSTRINGS = [
+  "v1/auth/sign-in",
+  "v1/auth/sign-up",
+  "v1/auth/resend-otp",
+  "v1/auth/refresh",
+  "v1/auth/forgot-password",
+  "v1/auth/verify-otp",
+  "v1/auth/reset-password",
+] as const;
+
+/** Auth MS: `sign-out` expects Bearer + roles; other `/v1/auth/*` calls stay public/cookie-only per route. */
+export function setupAuthMsInterceptors(config: AuthInterceptorConfig): void {
+  installBearerInterceptors(authAxios, config, authMsAuthInstalled, {
+    skipAuthHeader: (url) =>
+      Boolean(url && AUTH_MS_SKIP_BEARER_SUBSTRINGS.some((fragment) => url.includes(fragment))),
+  });
 }

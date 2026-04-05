@@ -4,10 +4,12 @@ import { Bot, ArrowLeft, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { HelpCenterConversation } from "@/components/chat/HelpCenterConversation";
+import { useLocalePrefix } from "@/hooks/useLocalePrefix";
 import { cn } from "@/lib/utils";
 
 const ChatPage = () => {
   const navigate = useNavigate();
+  const { prefix } = useLocalePrefix();
   const { t } = useTranslation();
 
   return (
@@ -17,7 +19,7 @@ const ChatPage = () => {
           <Button
             type="button"
             variant="ghost"
-            onClick={() => navigate(-1)}
+            onClick={() => navigate(`${prefix}/dashboard`)}
             aria-label={t("chatPage.leaveChatAria")}
             className="h-11 min-h-11 shrink-0 gap-2 px-2 text-primary-foreground hover:bg-primary-foreground/10 sm:h-10 sm:min-h-0 sm:px-3"
           >

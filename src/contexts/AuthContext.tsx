@@ -8,7 +8,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { setupChatAuthInterceptors } from "@/lib/axios";
+import { setupAuthMsInterceptors, setupChatAuthInterceptors } from "@/lib/axios";
 import { clearPersistedSession, loadStoredAccessToken, loadStoredUser, persistSession } from "@/lib/auth/storage";
 import {
   type AuthCredentials,
@@ -90,11 +90,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    setupChatAuthInterceptors({
+    const authInterceptorConfig = {
       getAccessToken: () => accessTokenRef.current ?? loadStoredAccessToken(),
       refreshAccessToken: refreshAccessTokenForInterceptor,
       onAuthFailure: () => clearAuthRef.current(),
-    });
+    };
+    setupChatAuthInterceptors(authInterceptorConfig);
+    setupAuthMsInterceptors(authInterceptorConfig);
   }, [refreshAccessTokenForInterceptor]);
 
   useEffect(() => {

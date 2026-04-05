@@ -8,7 +8,6 @@ import {
   type ReactNode,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
 import { BookOpen, Bot, ChevronLeft, Send, User, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,11 +25,7 @@ import {
   type ChatHistoryRow,
 } from "@/lib/utils/api/chat";
 import { getLocalizedCategories } from "@/lib/utils/api/categories";
-import {
-  chatLangFromCourseId,
-  getCourseShortInfoForChat,
-  getLocalizedCourses,
-} from "@/lib/utils/api/courses";
+import { getCourseShortInfoForChat, getLocalizedCourses } from "@/lib/utils/api/courses";
 
 type Message = {
   id: string;
@@ -147,8 +142,6 @@ type SheetStep = "lang" | "mode" | "categories" | "courses";
 
 export function HelpCenterConversation({ variant }: { variant: Variant }) {
   const { i18n } = useTranslation();
-  const navigate = useNavigate();
-  const location = useLocation();
   const languageOptions = useMemo(
     () => [
       { id: "az", label: tHelp("helpCenterLanguageAz") },
@@ -207,6 +200,33 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     });
   }, []);
 
+  const fetchLocalizedCategories = useCallback(async (lang: string) => {
+    setListLoading(true);
+    try {
+      const res = await getLocalizedCategories(lang);
+      setLocalizedCategories(res);
+    } catch {
+      setLocalizedCategories([]);
+    } finally {
+      setListLoading(false);
+    }
+  }, []);
+
+  /** Kurs siyahısı: `categoryId` veriləndə backend `?category=<id>` ilə süzülür. */
+  const fetchLocalizedCourses = useCallback(async (lang: string, categoryId?: string | number | null) => {
+    setListLoading(true);
+    try {
+      const coursesRes = await getLocalizedCourses(lang, {
+        categoryId: categoryId != null && String(categoryId).trim() !== "" ? categoryId : undefined,
+      });
+      setLocalizedCourses(coursesRes);
+    } catch {
+      setLocalizedCourses([]);
+    } finally {
+      setListLoading(false);
+    }
+  }, []);
+
   useEffect(() => {
     historyHasMoreRef.current = historyHasMore;
   }, [historyHasMore]);
@@ -251,44 +271,32 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
 
         if (data.courseId) {
           const cid = data.courseId;
-          const lang = chatLangFromCourseId(cid);
-          await i18n.changeLanguage(lang);
           if (cancelled) return;
-          setSelectedLang(lang);
-          setListLoading(true);
-          try {
-            const [categoriesRes, coursesRes] = await Promise.all([
-              getLocalizedCategories(lang),
-              getLocalizedCourses(lang),
-            ]);
-            if (cancelled) return;
-            const info = await getCourseShortInfoForChat(cid);
-            if (cancelled) return;
-            let cats = categoriesRes;
-            let crs = coursesRes;
-            if (info) {
-              const catId = info.category.categoryId;
-              const catName = info.category.categoryName;
+          const info = await getCourseShortInfoForChat(cid);
+          if (cancelled) return;
+          if (info) {
+            const catId = info.category.categoryId;
+            const catName = info.category.categoryName;
+            const courseRow: GlobalCourse = { id: info.id, name: info.name };
+            setLocalizedCategories((prev) => {
+              let cats = [...prev];
               if (!cats.some((c) => String(c.id) === String(catId))) {
                 cats = [{ id: catId, name: catName }, ...cats];
               }
-              const courseRow: GlobalCourse = { id: info.id, name: info.name };
+              return cats;
+            });
+            setLocalizedCourses((prev) => {
+              let crs = [...prev];
               if (!crs.some((c) => String(c.id) === String(info.id))) {
                 crs = [courseRow, ...crs];
               }
-              setLocalizedCategories(cats);
-              setLocalizedCourses(crs);
-              setSelectionMode("category");
-              setSelectedCategoryId(catId);
-              commitSelectedCourse(courseRow);
-            } else {
-              setLocalizedCategories(categoriesRes);
-              setLocalizedCourses(coursesRes);
-              const fromList = coursesRes.find((c) => String(c.id) === String(cid));
-              commitSelectedCourse(fromList ?? { id: cid, name: "" });
-            }
-          } finally {
-            if (!cancelled) setListLoading(false);
+              return crs;
+            });
+            setSelectionMode("category");
+            setSelectedCategoryId(catId);
+            commitSelectedCourse(courseRow);
+          } else {
+            commitSelectedCourse({ id: cid, name: "" });
           }
         }
 
@@ -334,7 +342,7 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     return () => {
       cancelled = true;
     };
-  }, [isAuthenticated, i18n, commitSelectedCourse]);
+  }, [isAuthenticated, commitSelectedCourse]);
 
   useEffect(() => {
     if (historyInitialLoading) return;
@@ -442,42 +450,16 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     setMessages((prev) => [...prev, ...stamped]);
   };
 
-  const fetchLocalizedLists = async (lang: string) => {
-    setListLoading(true);
-    try {
-      const [categoriesRes, coursesRes] = await Promise.all([
-        getLocalizedCategories(lang),
-        getLocalizedCourses(lang),
-      ]);
-      setLocalizedCategories(categoriesRes);
-      setLocalizedCourses(coursesRes);
-    } catch {
-      setLocalizedCategories([]);
-      setLocalizedCourses([]);
-    } finally {
-      setListLoading(false);
-    }
-  };
-
   const handleSelectLanguage = async (lang: string) => {
     if (chatLoading || listLoading) return;
     if (!isSupportedLocale(lang)) return;
-
-    void i18n.changeLanguage(lang);
-    if (typeof document !== "undefined") {
-      document.documentElement.lang = lang;
-    }
-    const segments = location.pathname.split("/").filter(Boolean);
-    if (segments.length > 0 && isSupportedLocale(segments[0])) {
-      segments[0] = lang;
-      navigate(`/${segments.join("/")}${location.search}${location.hash}`, { replace: true });
-    }
 
     setSelectedLang(lang);
     setSelectionMode(null);
     setSelectedCategoryId(null);
     commitSelectedCourse(null);
-    await fetchLocalizedLists(lang);
+    setLocalizedCategories([]);
+    setLocalizedCourses([]);
 
     pushMessages([
       {
@@ -495,12 +477,7 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
   };
 
   const handleSelectMode = async (mode: "category" | "all") => {
-    let lang = selectedLang;
-    if (!lang) {
-      lang = DEFAULT_CHAT_LANG;
-      setSelectedLang(lang);
-      await fetchLocalizedLists(lang);
-    }
+    if (!selectedLang) return;
 
     setSelectionMode(mode);
     setSelectedCategoryId(null);
@@ -516,6 +493,8 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
         },
       ]);
       scrollMessagesEnd("smooth");
+      setLocalizedCourses([]);
+      await fetchLocalizedCategories(selectedLang);
       return;
     }
 
@@ -528,11 +507,16 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
       },
     ]);
     scrollMessagesEnd("smooth");
+    setLocalizedCategories([]);
+    await fetchLocalizedCourses(selectedLang, null);
   };
 
   const handleSelectCategory = (category: GlobalCategory) => {
     setSelectedCategoryId(category.id);
     commitSelectedCourse(null);
+    if (selectedLang && category.id != null && String(category.id).trim() !== "") {
+      void fetchLocalizedCourses(selectedLang, category.id);
+    }
     pushMessages([
       { id: newLocalId(), sender: "user", text: getEntityLabel(category) },
       {
@@ -555,10 +539,6 @@ export function HelpCenterConversation({ variant }: { variant: Variant }) {
     chatRequestInFlightRef.current = true;
 
     const lang = selectedLang ?? DEFAULT_CHAT_LANG;
-    if (!selectedLang) {
-      setSelectedLang(lang);
-      void fetchLocalizedLists(lang);
-    }
 
     setChatLoading(true);
     const loadingId = newLocalId();

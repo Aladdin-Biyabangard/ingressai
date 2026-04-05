@@ -3,7 +3,7 @@ param(
     [string]$Tag,
 
     [Parameter(Mandatory = $false)]
-    [string]$FrontendApiUrl = "http://65.21.51.215:8020/v1",
+    [string]$FrontendApiUrl = "http://65.21.51.215:9091/v1",
 
     [Parameter(Mandatory = $false)]
     [string]$PropertiesFile = "gradle.properties"
@@ -44,7 +44,7 @@ if ([string]::IsNullOrWhiteSpace($dockerRepoUrl)) {
     $dockerRepoUrl = $dockerHubUsername
 }
 
-$frontendImage = "$dockerRepoUrl/hotel-pms-frontend:$Tag"
+$frontendImage = "$dockerRepoUrl/chat-bot:$Tag"
 
 Write-Host "Docker login check..." -ForegroundColor Cyan
 docker info | Out-Null

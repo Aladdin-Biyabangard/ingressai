@@ -2,8 +2,13 @@ import { useNavigate } from "react-router-dom";
 import { Bot, Sparkles } from "lucide-react";
 import { tHelp } from "@/lib/helpCenterCopy";
 import { useLocalePrefix } from "@/hooks/useLocalePrefix";
+import { cn } from "@/lib/utils";
 
-const ChatButton = () => {
+type ChatButtonProps = {
+  className?: string;
+};
+
+const ChatButton = ({ className }: ChatButtonProps) => {
   const navigate = useNavigate();
   const { prefix } = useLocalePrefix();
 
@@ -11,7 +16,10 @@ const ChatButton = () => {
     <button
       type="button"
       onClick={() => navigate(`${prefix}/chat`)}
-      className="fixed fixed-fab-br z-50 flex max-w-[min(19rem,calc(100vw-1.25rem-env(safe-area-inset-left)-env(safe-area-inset-right)))] items-center gap-0 rounded-full border border-primary-foreground/25 bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] p-1.5 pl-1.5 pr-3 shadow-lg shadow-primary/30 ring-2 ring-primary/25 transition-[transform,box-shadow] hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:pr-4"
+      className={cn(
+        "fixed fixed-fab-br z-50 flex max-w-[min(19rem,calc(100vw-1.25rem-env(safe-area-inset-left)-env(safe-area-inset-right)))] items-center gap-0 rounded-full border border-primary-foreground/25 bg-gradient-to-br from-[hsl(var(--gradient-start))] to-[hsl(var(--gradient-end))] p-1.5 pl-1.5 pr-3 shadow-lg shadow-primary/30 ring-2 ring-primary/25 transition-[transform,box-shadow] hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:hover:scale-100 sm:pr-4",
+        className,
+      )}
       aria-label={tHelp("helpCenterFabAria")}
     >
       <span className="relative flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-foreground/15 ring-1 ring-primary-foreground/20">

@@ -81,15 +81,31 @@ function pickCourseFields(item: unknown): LocalizedCourse | null {
   return { id, name };
 }
 
-export async function getLocalizedCourses(lang: string): Promise<LocalizedCourse[]> {
+export type GetLocalizedCoursesOptions = {
+  /** Backend `GET …/search?category=` — kateqoriya ID-si (Spring `@RequestParam String category`). */
+  categoryId?: string | number | null;
+};
+
+export async function getLocalizedCourses(
+  lang: string,
+  options?: GetLocalizedCoursesOptions,
+): Promise<LocalizedCourse[]> {
   try {
     const path = `${lang}/v1/courses/search`;
+    const params: Record<string, string | number> = {
+      page: Number(import.meta.env.VITE_COURSE_SEARCH_PAGE ?? 0),
+      size: Number(import.meta.env.VITE_COURSE_SEARCH_SIZE ?? 10),
+      sort: import.meta.env.VITE_COURSE_SEARCH_SORT ?? "id",
+    };
+    const rawId = options?.categoryId;
+    if (rawId != null) {
+      const asString = String(rawId).trim();
+      if (asString.length > 0) {
+        params.category = asString;
+      }
+    }
     const res = await customAxios.get(path, {
-      params: {
-        page: Number(import.meta.env.VITE_COURSE_SEARCH_PAGE ?? 0),
-        size: Number(import.meta.env.VITE_COURSE_SEARCH_SIZE ?? 10),
-        sort: import.meta.env.VITE_COURSE_SEARCH_SORT ?? "id",
-      },
+      params,
     });
     return extractCourseList(res.data)
       .map(pickCourseFields)

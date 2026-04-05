@@ -110,7 +110,6 @@
   },
   "dashboard": {
     "welcome": "Welcome back.",
-    "searchPlaceholder": "Search…",
     "signOutAria": "Sign out"
   },
   "chatPage": {
@@ -174,5 +173,103 @@
     "helpCenterClearCourseAria": "Clear course selection",
     "helpCenterActiveCourseHint": "Answers focus on this course.",
     "helpCenterSendAria": "Send message"
+  },
+  "landing": {
+    "signIn": "Sign in",
+    "heroBadge": "AI answers + real rewards",
+    "heroTitle": "Learn smarter with an AI that knows your courses",
+    "heroSubtitle": "Ask anything about trainings, paths, and schedules—then invite friends and save on your next enrollment.",
+    "ctaReferral": "Get 5% off",
+    "ctaChat": "Open AI chat",
+    "chatSectionEyebrow": "Course-aware AI",
+    "chatSectionTitle": "A friendly chatbot for every question",
+    "chatSectionBody": "Example messages show how the assistant explains modules, deadlines, and what to study next—clearly and calmly.",
+    "chatBullet1": "Plain-language answers grounded in your course catalog",
+    "chatBullet2": "Warm tone that feels approachable, not robotic",
+    "chatBullet3": "Same assistant from the floating button—always one tap away",
+    "chatWindowTitle": "Course assistant (demo)",
+    "chatBubbleUser1": "What's the best order to finish the Data Fundamentals modules?",
+    "chatBubbleAi1": "Start with Foundations, then SQL basics, then Visualization. Each quiz builds on the last—aim for one module every 3–4 days if you're part-time.",
+    "chatBubbleUser2": "Can I pause and resume later without losing progress?",
+    "chatBubbleAi2": "Yes. Progress saves automatically. When you're back, continue from the last completed lesson—you won't need to repeat quizzes you already passed.",
+    "chatInputPlaceholder": "Ask about any course…",
+    "chatSend": "Send",
+    "chatFab": "Chat with AI",
+    "chatFabSub": "Ask about courses — instant answers",
+    "chatLiveBadge": "AI",
+    "chatFabAria": "Open AI course assistant preview",
+    "chatPanelTitle": "AI course assistant",
+    "chatPanelSubtitle": "Answers tuned to your catalog",
+    "chatPanelCloseAria": "Close chat preview",
+    "closeBackdropAria": "Close chat preview",
+    "chatOpenFull": "Open full chat",
+    "referralPageBadge": "Invite & earn",
+    "referralLeadTitle": "Referral programs",
+    "referralLeadSubtitle": "Your codes and rewards live here—pick a campaign and share in one tap.",
+    "referralProgramsEmpty": "No referral programs are available yet.",
+    "referralHowItWorksTitle": "How it works",
+    "referralSteps": [
+      { "title": "Share your referral code", "body": "Send your personal link or code in one tap." },
+      { "title": "Friends sign up", "body": "They create an account using your invite." },
+      { "title": "You get rewards", "body": "At three successful invites, your 5% discount activates." }
+    ],
+    "stepLabel": "Step {{step}}",
+    "codeLabel": "Your referral code",
+    "copyCode": "Copy",
+    "copySuccess": "Code copied",
+    "copyInviteSuccess": "Invite link copied",
+    "copyFailed": "Could not copy",
+    "referralCta": "Copy invite link",
+    "referralFabShort": "Referrals",
+    "referralFabHint": "All programs",
+    "referralFabAria": "Scroll to referral programs",
+    "referralPrograms": [
+      {
+        "id": "friends5",
+        "accent": "amber",
+        "eyebrow": "Referral rewards",
+        "highlight": "5% off next enrollment",
+        "title": "Invite 3 friends, get 5% off",
+        "subtitle": "Share your code. When three people sign up with it, your discount unlocks automatically on your next purchase.",
+        "progressCurrent": 2,
+        "progressGoal": 3,
+        "progressLabel": "{{current}} of {{goal}} friends invited",
+        "progressHint": "Invite one more friend to unlock your 5% discount.",
+        "badges": [
+          { "label": "Inviter", "tone": "earned" },
+          { "label": "Connector", "tone": "earned" },
+          { "label": "Champion", "tone": "locked" }
+        ],
+        "code": "INGRESS-7XK2"
+      },
+      {
+        "id": "team10",
+        "accent": "violet",
+        "eyebrow": "Teams",
+        "highlight": "10% at 5 seats",
+        "title": "Fill a study group, unlock 10%",
+        "subtitle": "When five learners enroll with your team code, your cohort unlocks a deeper discount on the selected bundle.",
+        "progressCurrent": 3,
+        "progressGoal": 5,
+        "progressLabel": "{{current}} of {{goal}} seats filled",
+        "progressHint": "Two more teammates to reach the 10% unlock.",
+        "badges": [
+          { "label": "Organizer", "tone": "earned" },
+          { "label": "Halfway", "tone": "active" },
+          { "label": "Group hero", "tone": "locked" }
+        ],
+        "code": "TEAM-BUNDLE-9F"
+      }
+    ],
+    "testimonialsTitle": "Learners trust the experience",
+    "t1Quote": "The AI broke down the syllabus faster than my study group. Night-and-day clarity.",
+    "t1Name": "Aysel M.",
+    "t1Role": "Product analyst",
+    "t2Quote": "Referring teammates was effortless—we all enrolled with a code and I saved on my renewal.",
+    "t2Name": "Jamil R.",
+    "t2Role": "Engineering lead",
+    "t3Quote": "Feels human, not robotic. I keep the chat open while I watch lessons.",
+    "t3Name": "Dina K.",
+    "t3Role": "Career switcher"
   }
 }

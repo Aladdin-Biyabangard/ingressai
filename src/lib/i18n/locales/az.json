@@ -110,7 +110,6 @@
   },
   "dashboard": {
     "welcome": "Xoş gəlmisiniz.",
-    "searchPlaceholder": "Axtar…",
     "signOutAria": "Çıxış"
   },
   "chatPage": {
@@ -174,5 +173,103 @@
     "helpCenterClearCourseAria": "Kurs seçimini ləğv et",
     "helpCenterActiveCourseHint": "Cavablar bu kursa yönəlib.",
     "helpCenterSendAria": "Mesaj göndər"
+  },
+  "landing": {
+    "signIn": "Daxil ol",
+    "heroBadge": "Sİ cavabları + real mükafatlar",
+    "heroTitle": "Kurslarınızı bilən süni intellekt ilə daha ağıllı öyrənin",
+    "heroSubtitle": "Təlimlər, yollar və cədvəllər haqqında hər şeyi soruşun — sonra dostlarınızı dəvət edin və növbəti qeydiyyatda qənaət edin.",
+    "ctaReferral": "5% endirim",
+    "ctaChat": "Sİ çatını aç",
+    "chatSectionEyebrow": "Kursa uyğun Sİ",
+    "chatSectionTitle": "Hər sual üçün mehriban çatbot",
+    "chatSectionBody": "Nümunə mesajlar köməkçinin modulları, son tarixləri və növbəti addımı necə aydın və sakit izah etdiyini göstərir.",
+    "chatBullet1": "Kurs kataloqunuza söykənən sadə dildə cavablar",
+    "chatBullet2": "Robot deyil, yaxınlıq yaradan isti ton",
+    "chatBullet3": "Üzən düymədə eyni köməkçi — həmişə bir toxunuş uzaqlığında",
+    "chatWindowTitle": "Kurs köməkçisi (demo)",
+    "chatBubbleUser1": "Data Fundamentals modullarını ən yaxşı hansı ardıcıllıqla bitirməliyəm?",
+    "chatBubbleAi1": "Əvvəlcə Əsaslar, sonra SQL əsasları, sonra Vizualizasiya ilə davam edin. Hər test bir əvvəlkinə əsaslanır — yarım ştatlı olsanız, təxminən 3–4 gündə bir modul hədəfləyin.",
+    "chatBubbleUser2": "Dayandırıb sonra davam edə bilərəm? İrəliləyiş itmir?",
+    "chatBubbleAi2": "Bəli. İrəliləyiş avtomatik saxlanılır. Qayıdanda son tamamlanmış dərsdən davam edin — artıq keçdiyiniz testləri təkrarlamalı olmayacaqsınız.",
+    "chatInputPlaceholder": "İstənilən kurs haqqında soruşun…",
+    "chatSend": "Göndər",
+    "chatFab": "Sİ ilə çat",
+    "chatFabSub": "Kurslar haqqında soruşun — dərhal cavab",
+    "chatLiveBadge": "Sİ",
+    "chatFabAria": "Kurs köməkçisi önbaxışını aç",
+    "chatPanelTitle": "Kurs köməkçisi (Sİ)",
+    "chatPanelSubtitle": "Kataloqunuza uyğun cavablar",
+    "chatPanelCloseAria": "Çat önbaxışını bağla",
+    "closeBackdropAria": "Çat önbaxışını bağla",
+    "chatOpenFull": "Tam çatı aç",
+    "referralPageBadge": "Dəvət et, qazan",
+    "referralLeadTitle": "Dəvət proqramları",
+    "referralLeadSubtitle": "Kodlarınız və mükafatlarınız buradadır — kampaniya seçin, bir toxunuşla paylaşın.",
+    "referralProgramsEmpty": "Hələlik dəvət proqramı yoxdur.",
+    "referralHowItWorksTitle": "Necə işləyir",
+    "referralSteps": [
+      { "title": "Dəvət kodunuzu paylaşın", "body": "Şəxsi keçidinizi və ya kodunuzu bir toxunuşla göndərin." },
+      { "title": "Dostlar qeydiyyatdan keçir", "body": "Onlar dəvətinizlə hesab yaradır." },
+      { "title": "Siz mükafat alırsınız", "body": "Uğurlu üç dəvətdən sonra 5% endiriminiz aktivləşir." }
+    ],
+    "stepLabel": "Addım {{step}}",
+    "codeLabel": "Dəvət kodunuz",
+    "copyCode": "Kopyala",
+    "copySuccess": "Kod kopyalandı",
+    "copyInviteSuccess": "Dəvət keçidi kopyalandı",
+    "copyFailed": "Kopyalama alınmadı",
+    "referralCta": "Dəvət keçidini kopyala",
+    "referralFabShort": "Dəvətlər",
+    "referralFabHint": "Bütün proqramlar",
+    "referralFabAria": "Dəvət proqramlarına keç",
+    "referralPrograms": [
+      {
+        "id": "friends5",
+        "accent": "amber",
+        "eyebrow": "Dəvət mükafatları",
+        "highlight": "Növbəti qeydiyyatda 5%",
+        "title": "3 dost dəvət et, 5% endirim qazan",
+        "subtitle": "Kodunuzu paylaşın. Üç nəfər onunla qeydiyyatdan keçəndə endiriminiz növbəti alışda avtomatik aktivləşir.",
+        "progressCurrent": 2,
+        "progressGoal": 3,
+        "progressLabel": "Dəvət olunan dostlar: {{current}} / {{goal}}",
+        "progressHint": "5% endiriminizi açmaq üçün bir dost daha dəvət edin.",
+        "badges": [
+          { "label": "Dəvət edən", "tone": "earned" },
+          { "label": "Əlaqəçi", "tone": "earned" },
+          { "label": "Çempion", "tone": "locked" }
+        ],
+        "code": "INGRESS-7XK2"
+      },
+      {
+        "id": "team10",
+        "accent": "violet",
+        "eyebrow": "Komandalar",
+        "highlight": "5 yerdə 10%",
+        "title": "Təhsil qrupu yığın, 10% açın",
+        "subtitle": "Beş öyrənən komanda kodunuzla qeydiyyatdan keçəndə seçilmiş paketdə daha dərin endirim aktivləşir.",
+        "progressCurrent": 3,
+        "progressGoal": 5,
+        "progressLabel": "Doldurulan yerlər: {{current}} / {{goal}}",
+        "progressHint": "10% açmaq üçün iki yoldaş daha.",
+        "badges": [
+          { "label": "Təşkilatçı", "tone": "earned" },
+          { "label": "Yarı yolda", "tone": "active" },
+          { "label": "Qrup qəhrəmanı", "tone": "locked" }
+        ],
+        "code": "TEAM-BUNDLE-9F"
+      }
+    ],
+    "testimonialsTitle": "Öyrənənlər təcrübəyə etibar edir",
+    "t1Quote": "Sİ tədris planını təhsil qrupumdan tez açdı. Gecə ilə gündüz kimi fərq.",
+    "t1Name": "Aysel M.",
+    "t1Role": "Məhsul analitiki",
+    "t2Quote": "Komanda yoldaşlarını dəvət etmək asan idi — hamı kodla yazıldı və mən yeniləmədə qənaət etdim.",
+    "t2Name": "Cəmil R.",
+    "t2Role": "Mühəndislik rəhbəri",
+    "t3Quote": "İnsani səslənir, robot yox. Dərslərə baxarkən çatı açıq saxlayıram.",
+    "t3Name": "Dina K.",
+    "t3Role": "Karyera dəyişdirən"
   }
 }
