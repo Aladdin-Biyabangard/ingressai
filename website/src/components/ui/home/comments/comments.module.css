@@ -1,0 +1,173 @@
+.comments {
+    background-color: rgba(248, 249, 250, 1);
+
+    .commentsTitle {
+
+        background-image: url('/images/comments-bg.png');
+        background-position:center;
+        width: 100%;
+        padding-top: 50px;
+        height: 200px;
+        color: rgba(33, 37, 41, 1);
+        font-weight: 700;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 32px;
+        line-height: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .commentsSlider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px;
+        position: relative;
+        overflow: hidden;
+
+        .bullet {
+            cursor: pointer;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border-radius: 8px;
+            background: rgba(222, 226, 230, 1);
+            margin: 0 4px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .active {
+            background-color: rgba(0, 84, 192, 1);
+            width: 38px;
+            border-radius: 10px;
+        }
+
+        .mySwiper {
+            padding-bottom: 80px;
+            overflow: hidden;
+            width: 100%;
+        }
+
+
+        .swiperSlide {
+            height: auto;
+            width: 650px !important;
+            opacity: 0.7;
+            transform: scale(0.9);
+            transition: all 0.3s ease;
+        }
+
+        .customNav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            background: rgba(25, 33, 61, 0.4);
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .customNav:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .customPrev {
+            top: 35%;
+            left: 25%;
+        }
+
+        .customNext {
+            top: 35%;
+            right: 25%;
+        }
+    }
+
+    .mobileSwiper {
+        display: none;
+    }
+
+    .mySwiper :global(.swiper-wrapper) {
+        align-items: stretch;
+        transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1) !important;
+
+    }
+
+    .mySwiper :global(.swiper-slide-active) {
+        opacity: 1;
+        transform: scale(1);
+        z-index: 2;
+    }
+
+
+    .mySwiper :global(.swiper-slide) {
+        height: auto !important;
+    }
+}
+
+@media(max-width:1200px) {
+    .comments {
+        .commentsSlider {
+            .customPrev {
+                left: 20%
+            }
+
+            .customNext {
+                right: 20%;
+            }
+        }
+    }
+}
+
+@media(max-width:1024px) {
+    .comments {
+        .commentsTitle{
+            font-size: 24px;
+        }
+        .commentsSlider {
+            .customPrev {
+                left: 15%
+            }
+
+            .customNext {
+                right: 15%;
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .comments {
+        .swiperContainer {
+            display: none;
+        }
+
+        .mobileSwiper {
+            display: block;
+            .mobileSwiperSlide{
+                width: 90vw;
+                margin: 0 auto;
+            }
+        }
+
+        .commentsSlider {
+            .customPrev {
+                left: 2%
+            }
+
+            .customNext {
+                right: 2%;
+            }
+        }
+    }
+}

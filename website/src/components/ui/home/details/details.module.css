@@ -1,0 +1,13 @@
+.details{
+    height: auto;
+    width: 100%;
+    padding-top: 32px;
+}
+
+@media(max-width:1024px){
+    .details{
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+    }
+}

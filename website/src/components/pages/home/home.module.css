@@ -1,0 +1,11 @@
+.home {
+    position: relative;
+    min-height: 100vh;
+
+    .homeBackgroundContainer {
+        background: #f7f9ff;
+        gap: 48px;
+        display: flex;
+        flex-direction: column;
+    }
+}

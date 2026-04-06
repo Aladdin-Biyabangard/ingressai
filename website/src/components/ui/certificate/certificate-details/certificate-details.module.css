@@ -1,0 +1,99 @@
+.certificateCardSection {
+    display: flex;
+    justify-content: center;
+}
+
+.certificateCard {
+    background: #fff;
+
+    box-shadow: 0 2px 16px rgba(31, 41, 55, 0.08);
+    display: flex;
+    gap: 48px;
+    padding: 40px 48px;
+    max-width: 1200px;
+    width: 100%;
+}
+
+.cardColumn {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.cardTitle {
+    font-size: 1.6rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    color: #181c32;
+}
+
+.cardItem {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+
+.cardIcon {
+    font-size: 1.7rem;
+    margin-top: 2px;
+}
+
+.cardLabel {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #222;
+}
+
+.cardValue {
+    font-size: 1.1rem;
+    color: #444;
+}
+
+.cardSubValue {
+    font-size: 1rem;
+    color: #888;
+}
+
+.cardCredential {
+    background: #f7f7fa;
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #222;
+    display: inline-block;
+    margin-top: 2px;
+}
+
+.cardDescription {
+    color: #6b7280;
+    font-size: 1.08rem;
+    margin-top: 2px;
+}
+
+.cardSkills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.cardSkill {
+    background: #f7f7fa;
+    border-radius: 16px;
+    padding: 4px 14px;
+    font-size: 1rem;
+    color: #222;
+    font-weight: 600;
+    border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+    .certificateCard {
+        flex-direction: column;
+        gap: 32px;
+        padding: 24px 12px;
+    }
+}

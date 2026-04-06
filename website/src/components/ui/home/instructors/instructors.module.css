@@ -1,0 +1,118 @@
+.instructors {
+  background: rgba(251, 253, 255, 1);
+  height: 433px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .instructorsContainer {
+    display: flex;
+    align-items: center;
+    gap: 63px;
+    width: 85%;
+    max-width: 1216px;
+    margin: 0 auto;
+
+    .instructorsLeft {
+      width: 30%;
+      max-width: 383px;
+    }
+
+    .instructorsRight {
+      width: 65%;
+      margin: 0 auto;
+      overflow: visible;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .swiperWrapper {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .swiper {
+        padding: 20px 0;
+        padding-bottom: 80px;
+        height: auto;
+        width: 100%;
+      }
+
+      .instructorContainer {
+        height: 100%;
+        max-width: 350px;
+        max-height: 270px;
+        width: 100%;
+        display: flex;
+        padding: 0 5px;
+      }
+
+      .swiper {
+        padding: 20px 0;
+        padding-bottom: 80px;
+        height: auto;
+      }
+
+      .swiper .swiper-pagination {
+        bottom: -40px !important;
+      }
+
+      .bullet {
+        cursor: pointer;
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border-radius: 8px;
+        background: rgba(222, 226, 230, 1);
+        margin: 0 4px;
+        transition: all 0.3s ease;
+      }
+
+      .active {
+        background-color: rgba(0, 84, 192, 1);
+        width: 38px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .instructors {
+    height: auto;
+    padding: 32px 0;
+
+    .instructorsContainer {
+      width: 90%;
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 0;
+
+      .instructorsLeft {
+        width: 100%;
+      }
+
+      .instructorsRight {
+        width: 100%;
+        .instructorContainer {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .instructors {
+    .instructorsContainer {
+      .instructorsRight {
+        min-height: 564px;
+        .swiper-wrapper {
+          flex-direction: column !important;
+        }
+      }
+    }
+  }
+}

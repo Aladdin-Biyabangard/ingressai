@@ -1,0 +1,75 @@
+.comment {
+    background: rgba(255, 255, 255, 1);
+    border-radius: 12px;
+    padding: 24px 24px 32px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+    height: 260px;
+    box-shadow: 0 2px 13px 0 rgba(0, 0, 0, 0.03);
+
+    .commentText {
+        color: rgba(25, 33, 61, 1);
+        font-weight: 500;
+        line-height: 160%;
+        font-size: 16px;
+        flex-grow: 1;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+    }
+
+    .commentInfo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .commentAuthor {
+            display: flex;
+            align-items:center;
+            gap: 8px;
+            margin-top: 10px;
+            .commentAuthorProfile{
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .commentAuthorName {
+                color: rgba(25, 33, 61, 1);
+                font-size: 12px;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 700;
+                line-height: 32px;
+            }
+        }
+    }
+
+
+}
+
+
+@media(max-width:768px){
+    .comment{
+        height: 350px;
+        .commentText{
+            -webkit-line-clamp: 10;
+        }
+    }
+}
+
+
+@media(max-width:576px){
+    .comment{
+        .commentInfo{
+            flex-direction: column;
+            align-items:flex-start;
+            gap: 10px;
+        }
+    }
+}

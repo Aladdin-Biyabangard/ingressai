@@ -64,8 +64,25 @@ export async function signIn(body: AuthCredentials): Promise<LoginResponse> {
   return res.data;
 }
 
-export async function signUp(body: RegisterPayload): Promise<void> {
-  await authAxios.post("v1/auth/sign-up", body);
+export type SignUpReferralParams = {
+  ref?: string;
+  program?: string;
+};
+
+export async function signUp(body: RegisterPayload, referral?: SignUpReferralParams): Promise<void> {
+  const params: Record<string, string> = {};
+  if (referral?.ref) params.ref = referral.ref;
+  if (referral?.program) params.program = referral.program;
+  await authAxios.post("v1/auth/sign-up", body, {
+    params: Object.keys(params).length ? params : undefined,
+  });
+}
+
+/** `204 No Content` on success; throws with backend `ErrorResponse` on failure. */
+export async function validateReferralCode(ref: string): Promise<void> {
+  await authAxios.get("v1/auth/validate-referral-code", {
+    params: { ref },
+  });
 }
 
 export async function resendOtp(body: ResendOtpPayload): Promise<void> {

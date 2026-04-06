@@ -1,0 +1,54 @@
+.trainingRoadmap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 1px solid rgba(234, 234, 234, 1);
+  padding: 12px 24px 24px 24px;
+  .title {
+    color: rgba(0, 58, 157, 1);
+    line-height: 28px;
+    font-weight: 700;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+  }
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    .item {
+      transition: all 0.3s ease-in-out;
+      overflow: hidden;
+      max-height: 90px;
+      display: flex;
+      gap: 16px;
+      .itemLeft {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 16px 0;
+        .index {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(211, 211, 211, 1);
+          height: 24px;
+          width: 24px;
+          border-radius: 60px;
+          color: rgba(16, 16, 16, 1);
+          font-size: 14p;
+          font-weight: 600;
+        }
+        .bullets {
+          position: relative;
+          width: 10px;
+          height: calc(100% + 16px);
+        }
+      }
+    }
+
+    .item.expanded {
+      max-height: 600px;
+    }
+  }
+}

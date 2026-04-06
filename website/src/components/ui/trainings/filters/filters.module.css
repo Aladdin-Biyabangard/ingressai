@@ -1,0 +1,29 @@
+.filters {
+    width: 25%;
+    min-width: 250px;
+    max-width: 25%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .filterTop {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+}
+
+@media(max-width: 768px) {
+    .filters {
+        width: 100%;
+        min-width: 250px;
+        max-width: 250px;
+    }
+}
+
+@media(max-width:576px) {
+    .filters {
+        display: none
+    }
+}

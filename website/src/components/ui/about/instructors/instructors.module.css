@@ -1,0 +1,114 @@
+.instructors {
+    background: #FBFDFF;
+
+    .instructorsContainer {
+        width: 85%;
+        max-width: 1216px;
+        margin: 0 auto;
+        padding: 53px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 11px;
+
+        .instructorsTop {
+            width: 100%;
+        }
+
+        .instructorsLoaderContainer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            width: 100%;
+        }
+
+        .instructorsBottom {
+            display: grid;
+            padding: 16px 0;
+            row-gap: 30px;
+            column-gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+            justify-content: center;
+
+            .instructor {
+                width: 250px;
+                height: auto;
+                justify-self: center;
+            }
+        }
+    }
+}
+
+
+@media(max-width:1300px) {
+    .instructors {
+        .instructorsContainer {
+            .instructorsBottom {
+                .instructor {
+                    width: 220px;
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:1200px) {
+    .instructors {
+        .instructorsContainer {
+            .instructorsBottom {
+                grid-template-columns: repeat(3, 1fr);
+
+                .instructor {
+                    width: 250px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:1024px) {
+    .instructors {
+        .instructorsContainer {
+            width: 90%;
+        }
+    }
+}
+
+@media(max-width:992px) {
+    .instructors {
+        .instructorsContainer {
+            .instructorsBottom {
+                .instructor {
+                    width: 220px;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .instructors {
+        .instructorsContainer {
+            .instructorsBottom {
+                grid-template-columns: repeat(2, 1fr);
+
+                .instructor {
+                    width: 250px;
+                }
+            }
+        }
+
+    }
+}
+
+
+@media(max-width:576px) {
+    .instructors {
+        .instructorsContainer {
+            .instructorsBottom {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    }
+}

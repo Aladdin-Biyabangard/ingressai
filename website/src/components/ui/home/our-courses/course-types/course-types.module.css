@@ -1,0 +1,57 @@
+.courseTypes {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    height: 36px;
+    border-bottom: 1px solid #DFDFDF;
+
+    .courseType {
+        position: relative;
+        color: #333333;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 550;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 0 4px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0%;
+            height: 2px;
+            background-color: #2316FB;
+            transition: width 0.3s ease-in-out;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+
+        &:last-child {
+            font-style: italic;
+            font-weight: 800;
+        }
+    }
+
+    .courseTypeSelected {
+        color: #023FCB;
+
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .courseTypes {
+        flex-wrap: wrap;
+        height: auto;
+    }
+}

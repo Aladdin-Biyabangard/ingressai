@@ -1,0 +1,65 @@
+.instructor {
+    border-radius: 8px;
+    padding: 4px;
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 2px 2px 6px 4px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+
+    .instructorImgContainer {
+        height: 110px;
+        width: 110px;
+        max-height: 110px;
+        max-width: 110px;
+        min-height: 110px;
+        max-height: 110px;
+        overflow: hidden;
+        border-radius: 50%;
+    }
+
+    .instructorInfo {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 4px;
+        .instructorName {
+            color: rgba(33, 37, 41, 1);
+            font-size: 18px;
+            line-height: 21.6px;
+            font-weight: 600;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .instructorRole {
+            color:rgba(12, 12, 12, 1);
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .instructorCompany {
+            color:rgba(108, 117, 125, 1);
+            font-size: 14px;
+            line-height: 21px;
+            font-weight: 400;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+        }
+        .instructorName,.instructorRole,.instructorCompany{
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 95%;
+            margin: 0 auto;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+.objectives {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .objectivesTop {
+        color: rgba(0, 58, 157, 1);
+        line-height: 28px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+        font-size: 20px;
+    }
+
+    .objectivesBottom {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+
+        .objective {
+            background: rgba(231, 238, 255, 1);
+            color: rgba(4, 4, 4, 1);
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 590;
+            line-height: 20px;
+            border-radius: 18px;
+            white-space: nowrap;
+            font-family: 'Nunito', sans-serif;
+        }
+    }
+}

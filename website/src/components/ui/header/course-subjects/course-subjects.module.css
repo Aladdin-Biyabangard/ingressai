@@ -1,0 +1,15 @@
+.courseSubjects{
+    padding: 8px 12px;
+    border-radius:4px;
+    background:#FAFAFA;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .courseSubjectsTitle{
+        color:#626262;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 600;
+        font-family: 'Nunito', sans-serif;
+    }
+}

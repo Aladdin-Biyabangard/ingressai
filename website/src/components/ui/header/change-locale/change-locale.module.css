@@ -1,0 +1,62 @@
+.localeSwitcher {
+  position: relative;
+  font-family: sans-serif;
+
+  .toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f7f9ff;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Inter', sans-serif;
+    height: 30px;
+  }
+
+  .toggle:hover {
+    background-color: #f5f5f5;
+  }
+
+  .flag {
+    font-size: 18px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 100px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+    overflow: hidden;
+  }
+
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .item:hover {
+    background-color: #f0f0f0;
+  }
+
+  .item.active {
+    background-color: #e6f0ff;
+    font-weight: bold;
+  }
+}

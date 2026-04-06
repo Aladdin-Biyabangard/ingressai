@@ -1,0 +1,43 @@
+.events {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1216px;
+    width: 85%;
+    margin: 0 auto;
+    padding: 32px 0;
+
+    .eventsTitle {
+        color: rgba(33, 37, 41, 1);
+        font-family: "Nunito", sans-serif;
+        font-weight: 700;
+        font-style: Bold;
+        font-size: 32px;
+        line-height: 48px;
+        letter-spacing: 0%;
+        text-align: center;
+    }
+
+    .eventsList {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 992px) {
+    .events .eventsList {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .events {
+        width: 90%;
+    }
+    
+    .events .eventsList {
+        grid-template-columns: 1fr;
+    }
+}

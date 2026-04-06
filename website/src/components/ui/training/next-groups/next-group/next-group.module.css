@@ -1,0 +1,87 @@
+.nextGroup {
+    flex: 1;
+    padding: 24px 16px;
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%);
+    box-shadow:
+        3px 3px 17.82px -4px rgba(0, 0, 0, 0.05),
+        0.69px 0.69px 4.08px -2.67px rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(183, 183, 183, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .nextGroupTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .nextGroupTop div {
+        font-size: 20px;
+        color: rgba(16, 16, 16, 1);
+        line-height: 24px;
+        font-weight: 600;
+    }
+
+    .nextGroupTop button {
+        background: rgba(7, 57, 172, 1);
+        padding: 12px 24px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 27px;
+        letter-spacing: 0.64px;
+        color: rgba(255, 255, 255, 1);
+        border-radius: 6px;
+        transition: all 0.3s ease-in;
+
+        &:hover {
+            background: #2e6eff;
+        }
+    }
+
+    .nextGroupContent {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .nextGroupContent div,
+    .nextGroupContent p {
+        color: rgba(16, 16, 16, 1);
+        font-size: 14px;
+        line-height: 20px;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .nextGroupContent div {
+        font-weight: 700;
+    }
+
+    .nextGroupContent p {
+        font-weight: 500;
+    }
+
+    .nextGroupType {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .nextGroupType div {
+        background: rgba(242, 242, 242, 1);
+        padding: 4px 8px;
+        color: rgba(16, 16, 16, 1);
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        font-family: 'Nunito', sans-serif;
+        border-radius: 4px;
+    }
+}

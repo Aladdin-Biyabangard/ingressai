@@ -1,0 +1,162 @@
+.course {
+    display: flex;
+    border: 1px solid rgba(227, 227, 227, 1);
+    border-radius: 4px;
+    align-items: stretch;
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border-radius:4px;
+
+    &:hover{
+        box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+        .courseIcon img{
+            transform: scale(1.1);
+        }
+    }
+
+
+    .courseIcon {
+        width: 100%;
+        position: relative;
+
+        .courseLevel {
+            position: absolute;
+            background: rgba(209, 223, 255, 1);
+            border-radius: 4px;
+            height: 26px;
+            top: 17px;
+            left: 10px;
+            color: rgba(42, 42, 42, 1);
+            padding: 6px 7px;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            line-height: 18px;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .courseImg {
+            min-width: 200px;
+            height: 100%;
+            border-radius: 4px 0 0 4px;
+            object-fit: fill;
+        }
+    }
+
+    .courseIcon img {
+        object-fit: fill;
+        transition: all 0.3s ease;
+
+    }
+
+    .courseInfo {
+        height: 100%;
+        padding: 16px 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 12px;
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+
+        .courseHeader {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(33, 37, 41, 1);
+            font-size: 14px;
+            font-family: "Nunito", sans-serif;
+            font-weight: 200;
+            line-height: 21px;
+
+            .courseHeaderIcon {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .courseDivider {
+                background: rgba(206, 206, 206, 1);
+                width: 1px;
+                height: 16px;
+            }
+        }
+
+        .courseBody {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+
+            .courseBodyEllipsis {
+                width: 100%;
+                overflow: hidden;
+                .courseName {
+                    color: rgba(33, 37, 41, 1);
+                    font-size: 18px;
+                    font-family: 'Nunito', sans-serif;
+                    font-weight: 700;
+                    line-height: 22px;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    max-width: 90%;
+                    min-height: 46px;
+                    width: max-content;
+                }
+
+                .courseTitle {
+                    width: 100%;
+                    color: rgba(33, 37, 41, 1);
+                    font-size: 15px;
+                    font-family: 'Nunito', sans-serif;
+                    line-height: 22px;
+                    font-weight: 400;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .courseDuration {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+
+                .courseDurationInfo {
+                    color: rgba(33, 37, 41, 1);
+                    font-size: 14px;
+                    font-family: Arial, Helvetica, sans-serif;
+                    line-height: 21px;
+                    font-weight: 400;
+                    opacity: 0.7;
+
+                }
+            }
+        }
+    }
+
+}
+
+
+@media(max-width:576px) {
+    .course {
+        flex-direction: column;
+
+        .courseIcon {
+            /* height: 180px; */
+
+            .courseImg {
+                min-width: 100%;
+            }
+        }
+    }
+}

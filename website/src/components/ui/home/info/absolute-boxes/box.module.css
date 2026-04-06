@@ -1,0 +1,58 @@
+.infoRightBoxes {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 1);
+    padding: 10px 16px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0px 0px 44px 0px rgba(20, 40, 103, 0.19);
+
+    .infoRightBoxesDetails {
+        display: flex;
+        flex-direction: column;
+
+        .infoRightBoxesDetailsTitle {
+            font-family: 'Nunito', sans-serif;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 500;
+            color: rgba(91, 91, 91, 1);
+        }
+
+        .infoRightBoxesDetailsDetail {
+            min-height: 36px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 24px;
+            line-height: 36px;
+            font-weight: 700;
+            color: rgba(2, 63, 203, 1);
+        }
+    }
+
+}
+
+
+@media(max-width:1024px) {
+    .infoRightBoxes {
+        padding: 6px 12px;
+        .infoRightBoxesImg{
+            height: 36px;
+            width: 36px;
+        }
+
+        .infoRightBoxesDetails {
+
+            .infoRightBoxesDetailsTitle,
+            .infoRightBoxesDetailsDetail {
+                font-size: 12px;
+                line-height: 20px;
+            }
+            .infoRightBoxesDetailsDetail{
+                min-height: 20px;
+                height: 20px;
+            }
+        }
+    }
+}

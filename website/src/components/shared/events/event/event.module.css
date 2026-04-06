@@ -1,0 +1,273 @@
+.eventCard {
+  display: block;
+  position: relative;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #f1f5f9;
+  overflow: hidden;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  align-self: stretch;
+  flex: 1 1 250px;
+  max-width: calc(1216px / 3);
+  width: 100%;
+
+  &:hover {
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+    .eventImage {
+      img {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .eventImage {
+    position: relative;
+    width: 100%;
+    max-width: calc(1216px / 3);
+    aspect-ratio: 405.33 / 190;
+    overflow: hidden;
+
+    .remainingTime {
+      position: absolute;
+      left: 1rem;
+      top: 3rem;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+      .timeUnit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .timeValue {
+          font-size: 0.875rem;
+          font-weight: 700;
+          line-height: 1;
+          color: white;
+        }
+
+        .timeLabel {
+          font-size: 0.625rem;
+          font-weight: 500;
+          line-height: 1;
+          color: #d1d5db;
+          margin-top: 0.125rem;
+        }
+      }
+
+      .timeSeparator {
+        font-size: 0.875rem;
+        font-weight: 700;
+        color: white;
+        margin: 0 0.125rem;
+      }
+    }
+
+    img {
+      transition: all 0.3s ease;
+    }
+
+    .statusBadges {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      display: flex;
+      gap: 0.5rem;
+
+      .badge {
+        padding: 0.25rem 0.75rem;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 500;
+        border-radius: 9999px;
+        text-transform: capitalize;
+      }
+
+      .typeBadge {
+        background-color: #3b82f6;
+      }
+
+      .statusBadge {
+        &.upcoming {
+          background-color: #10b981;
+        }
+
+        &.other {
+          background-color: #6b7280;
+        }
+      }
+    }
+
+    .freeBadge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background-color: #059669;
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+  }
+
+  .eventContent {
+    padding: 1.5rem;
+
+    .eventHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+
+      .eventIcon {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #6b7280;
+
+        span {
+          font-size: 0.875rem;
+          font-weight: 500;
+        }
+      }
+
+      .externalIcon {
+        color: #9ca3af;
+        transition: color 0.3s ease;
+      }
+    }
+
+    .eventTitle {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 0.75rem;
+      transition: color 0.3s ease;
+      line-height: 1.4;
+    }
+
+    .categoriesSection {
+      margin-bottom: 1rem;
+
+      .categories {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+
+        .categoryTag {
+          padding: 0.25rem 0.5rem;
+          background-color: #dbeafe;
+          color: #1d4ed8;
+          font-size: 0.75rem;
+          border-radius: 0.375rem;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .tagsSection {
+      margin-bottom: 1rem;
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+
+        .tag {
+          padding: 0.25rem 0.5rem;
+          background-color: #f3f4f6;
+          color: #4b5563;
+          font-size: 0.75rem;
+          border-radius: 0.25rem;
+          font-weight: 500;
+        }
+
+        .moreTag {
+          padding: 0.25rem 0.5rem;
+          color: #6b7280;
+          font-size: 0.75rem;
+        }
+      }
+    }
+
+    .speakersSection {
+      margin-bottom: 1.5rem;
+
+      .speakersTitle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 0.75rem;
+      }
+
+      .speakers {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+
+    .eventDetails {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+
+      .detailItem {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.875rem;
+        color: #4b5563;
+
+        svg {
+          color: #9ca3af;
+          flex-shrink: 0;
+        }
+
+        .endTime {
+          color: #9ca3af;
+        }
+
+        .locationType {
+          font-size: 0.75rem;
+          background-color: #f3f4f6;
+          padding: 0.25rem 0.5rem;
+          border-radius: 0.25rem;
+          text-transform: capitalize;
+          margin-left: 0.5rem;
+        }
+
+        .priceIcon {
+          width: 1rem;
+          text-align: center;
+          color: #9ca3af;
+          flex-shrink: 0;
+        }
+      }
+    }
+  }
+
+  .hoverOverlay {
+    position: absolute;
+    inset: 0;
+    background: transparent;
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+}

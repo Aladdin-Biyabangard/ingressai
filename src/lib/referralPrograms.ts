@@ -1,3 +1,5 @@
+import type { ReferralProgramResponseDto } from "@/lib/utils/api/referralProgram";
+
 export type ReferralBadgeTone = "earned" | "active" | "locked";
 
 export type ReferralProgramStep = { title: string; body: string };
@@ -25,28 +27,6 @@ function isStep(x: unknown): x is ReferralProgramStep {
   return typeof s.title === "string" && typeof s.body === "string";
 }
 
-function isBadge(x: unknown): x is ReferralProgramBadge {
-  if (typeof x !== "object" || x === null) return false;
-  const b = x as Record<string, unknown>;
-  return typeof b.label === "string" && (b.tone === "earned" || b.tone === "active" || b.tone === "locked");
-}
-
-function isReferralProgram(x: unknown): x is ReferralProgramI18n {
-  if (typeof x !== "object" || x === null) return false;
-  const o = x as Record<string, unknown>;
-  if (typeof o.id !== "string" || typeof o.title !== "string" || typeof o.code !== "string") return false;
-  if (typeof o.eyebrow !== "string" || typeof o.highlight !== "string" || typeof o.subtitle !== "string") return false;
-  if (typeof o.progressLabel !== "string" || typeof o.progressHint !== "string") return false;
-  if (typeof o.progressCurrent !== "number" || typeof o.progressGoal !== "number") return false;
-  if (!Array.isArray(o.badges) || !o.badges.every(isBadge)) return false;
-  return true;
-}
-
-export function parseReferralPrograms(raw: unknown): ReferralProgramI18n[] {
-  if (!Array.isArray(raw)) return [];
-  return raw.filter(isReferralProgram);
-}
-
 export function parseReferralSteps(raw: unknown): ReferralProgramStep[] {
   if (!Array.isArray(raw)) return [];
   return raw.filter(isStep);
@@ -59,4 +39,39 @@ export function formatProgressLabel(template: string, current: number, goal: num
 export function referralProgressPercent(current: number, goal: number): number {
   if (!Number.isFinite(goal) || goal <= 0) return 0;
   return Math.min(100, Math.max(0, (current / goal) * 100));
+}
+
+const DASHBOARD_ACCENT_CYCLE = ["amber", "violet", "sky"] as const;
+
+export type MapReferralToDashboardOpts = {
+  progressLabelTemplate: string;
+  eyebrowDefault: string;
+  accentIndex: number;
+};
+
+/** Maps API referral program DTO to the shape used by dashboard cards. */
+export function mapReferralProgramToDashboardCard(
+  dto: ReferralProgramResponseDto,
+  opts: MapReferralToDashboardOpts,
+): ReferralProgramI18n {
+  const accent = DASHBOARD_ACCENT_CYCLE[opts.accentIndex % DASHBOARD_ACCENT_CYCLE.length];
+  const badges: ReferralProgramBadge[] = dto.badges
+    .map((label) => label.trim())
+    .filter(Boolean)
+    .map((label) => ({ label, tone: "active" as const }));
+
+  return {
+    id: dto.program,
+    accent,
+    eyebrow: opts.eyebrowDefault,
+    highlight: dto.highlight,
+    title: dto.title,
+    subtitle: dto.subtitle,
+    progressCurrent: dto.progressCurrent,
+    progressGoal: dto.proggressGoal,
+    progressLabel: opts.progressLabelTemplate,
+    progressHint: dto.progressHint,
+    badges,
+    code: dto.referralCode.trim(),
+  };
 }

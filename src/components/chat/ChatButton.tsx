@@ -25,7 +25,7 @@ const ChatButton = ({ className }: ChatButtonProps) => {
       <span className="relative flex size-11 shrink-0 items-center justify-center rounded-full bg-primary-foreground/15 ring-1 ring-primary-foreground/20">
         <Bot className="relative z-10 h-5 w-5 text-primary-foreground" aria-hidden />
         <Sparkles
-          className="absolute -right-0.5 -top-0.5 z-10 h-4 w-4 text-amber-200 drop-shadow"
+          className="absolute -right-0.5 -top-0.5 z-10 h-4 w-4 text-primary-foreground/85 drop-shadow"
           aria-hidden
           strokeWidth={2.25}
         />

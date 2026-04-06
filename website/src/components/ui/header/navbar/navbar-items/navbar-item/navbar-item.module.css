@@ -1,0 +1,36 @@
+.navbarItemContainer {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .navbarItem {
+        padding: 20px 8px;
+
+        .navbarItemText {
+            color: #333333;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 21px;
+            vertical-align: middle;
+            font-weight: 700;
+
+        }
+    }
+
+    .navbarItemDivider {
+        height: 32px;
+        width: 1px;
+        background: #E5E5E5;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbarItemContainer {
+        .navbarItem{
+            padding: 8px 0;
+        }
+        .navbarItemDivider {
+            display: none;
+        }
+    }
+}

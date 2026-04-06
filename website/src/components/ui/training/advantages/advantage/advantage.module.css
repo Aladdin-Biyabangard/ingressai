@@ -1,0 +1,36 @@
+.advantage {
+    flex: 1;
+    align-self: stretch ;
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    border: 1px solid rgba(183, 183, 183, 0.15);
+
+    .advantageContent {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .advantageContent div {
+        color: #101010;
+        font-size: 16px;
+        line-height: 24px;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 600;
+    }
+
+    .advantageContent p {
+        color: #101010;
+        line-height: 20px;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+}

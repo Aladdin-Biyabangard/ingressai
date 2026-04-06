@@ -1,0 +1,44 @@
+.vacancies {
+  min-height: 100vh;
+  width: 85%;
+  max-width: 1216px;
+  margin: 0 auto;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vacanciesContent {
+  display: flex;
+  gap: 16px;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 400px;
+}
+
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: #ef4444;
+}
+
+.empty {
+  text-align: center;
+  padding: 3rem;
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .vacancies {
+    width: 90%;
+  }
+
+  .vacanciesContent {
+    justify-content: space-between;
+  }
+}

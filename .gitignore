@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# docker-publish.ps1 — Hub token / şifrə
+docker-publish.properties
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

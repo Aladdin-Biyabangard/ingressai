@@ -1,0 +1,123 @@
+.aboutUs {
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%),
+        url('/images/home-bg.svg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+
+
+    .aboutUsContainer {
+        width: 85%;;
+        max-width: 1216px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 32px;
+
+        .aboutUsLeft {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            flex: 1;
+
+            .aboutUsTop {
+                color: #212529;
+                font-size: 44px;
+                line-height: 44px;
+                font-weight: 800;
+                font-family: 'Nunito', sans-serif;
+            }
+
+            .aboutUsBottom {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+
+                .aboutUsContent {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    line-height: 24px;
+                    font-family: 'Nunito', sans-serif;
+
+                }
+
+                .aboutUsContent div {
+                    color: #262A2D;
+                    font-size: 24px;
+                    font-weight: 700;
+                }
+
+                .aboutUsContent p {
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+            }
+        }
+
+        .aboutUsRight {
+            flex: 1;
+            position: relative;
+            height: 408px;
+            width: 526px;
+        }
+    }
+}
+
+
+@media (max-width:1024px) {
+    .aboutUs {
+        .aboutUsContainer {
+            .aboutUsLeft {
+                flex: auto;
+                width: 80%;
+            }
+
+            .aboutUsRight {
+                flex: auto;
+                height: 350px;
+                width: 400px;
+            }
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .aboutUs {
+        .aboutUsContainer {
+            width: 90%;
+            flex-direction: column;
+
+            .aboutUsLeft {
+                width: 100%;
+
+                .aboutUsTop {
+                    font-size: 32px;
+                }
+
+                .aboutUsBottom {
+                    .aboutUsContent div {
+                        font-size: 20px;
+                    }
+                }
+            }
+
+            .aboutUsRight {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width:576px) {
+    .aboutUs {
+        .aboutUsContainer {
+            .aboutUsRight {
+                height: 250px;
+            }
+        }
+    }
+}

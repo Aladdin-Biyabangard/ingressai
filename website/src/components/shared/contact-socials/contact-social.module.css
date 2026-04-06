@@ -1,0 +1,34 @@
+.contactInfoSocials {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  
+    .contactInfoSocialsLink {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 24px;
+      width: 24px;
+  
+      .contactInfoSocialIcon {
+        transition: all 0.3s ease;
+      }
+  
+      &[data-social="youtube"]:hover .contactInfoSocialIcon {
+        color: #FF0000;
+      }
+  
+      &[data-social="facebook"]:hover .contactInfoSocialIcon {
+        color: #1877F2;
+      }
+  
+      &[data-social="instagram"]:hover .contactInfoSocialIcon {
+        color: #E4405F;
+      }
+  
+      &[data-social="linkedin"]:hover .contactInfoSocialIcon {
+        color: #0A66C2;
+      }
+    }
+  }
+  

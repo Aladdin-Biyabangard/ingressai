@@ -1,0 +1,7 @@
+.contactPhone{
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    height: 24px;
+    min-width: 24px;
+}

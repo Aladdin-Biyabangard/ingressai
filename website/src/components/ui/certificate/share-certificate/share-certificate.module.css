@@ -1,0 +1,153 @@
+.shareSection {
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnails {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  top: 0;
+  left: 0
+}
+.thumbnail{
+  cursor: pointer;
+}
+.activeIcon {
+  color: #0d49cc;
+}
+
+.inactiveIcon {
+  color: #999;
+}
+
+.shareContainer {
+  background: #fff;
+  box-shadow: 0 2px 16px rgba(31, 41, 55, 0.08);
+  padding: 32px 48px;
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+.shareTitle {
+  position: relative;
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  color: #181c32;
+}
+
+.shareDescription {
+  font-size: 1.1rem;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.shareButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.shareButton,
+.copyLinkButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f7f7fa;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #222;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.shareButton:hover,
+.copyLinkButton:hover {
+  background: #eef1f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.copyLinkButton {
+  background: #fff;
+  border: 1px solid #3f79ff;
+  color: #3f79ff;
+}
+
+.copyLinkButton:hover {
+  background: #f0f5ff;
+}
+
+.downloadButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #2563eb;
+  background: #2563eb;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.downloadButton:hover {
+  background: #1e40af;
+  border-color: #1e40af;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.downloadButton:disabled {
+  background: #93c5fd;
+  border-color: #93c5fd;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .shareContainer {
+    padding: 24px 16px;
+  }
+
+  .shareButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .shareButton,
+  .copyLinkButton {
+    justify-content: center;
+  }
+}
+
+@media(max-width:576px){
+  .thumbnails{
+    display: none;
+  }
+}

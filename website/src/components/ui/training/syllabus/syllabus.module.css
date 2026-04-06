@@ -1,0 +1,75 @@
+.syllabus {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 24px 24px 24px;
+    gap: 12px;
+
+    .syllabusTop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .syllabusTopLeft {
+            color: rgba(0, 58, 157, 1);
+            line-height: 32px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+
+    .syllabusTop button {
+        color: rgba(26, 138, 251, 1);
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 700;
+    }
+
+    .syllabusLessons {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.normalView {
+    border: 1px solid rgba(234, 234, 234, 1);
+
+    .syllabusLessons {
+        gap: 24px;
+
+    }
+
+}
+
+.pdfView{
+    .syllabusLessons{
+        gap: 12px;
+    }
+}
+
+.loaderContainer {
+    width: 100%;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+@media(max-width:1024px) {
+    .syllabus {
+        .syllabusTop {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+
+            .syllabusTopLeft {
+                font-size: 18px;
+            }
+        }
+
+        .syllabusTop button {
+            font-size: 14px;
+        }
+    }
+}

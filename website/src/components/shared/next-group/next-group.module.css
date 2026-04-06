@@ -1,0 +1,91 @@
+.nextGroup {
+    padding: 24px 16px;
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%);
+    box-shadow:
+        3px 3px 17.82px -4px rgba(0, 0, 0, 0.05),
+        0.69px 0.69px 4.08px -2.67px rgba(0, 0, 0, 0.17);
+    border: 1px solid rgba(183, 183, 183, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .nextGroupTop {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        color: #101010;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .nextGroupTop div {
+        font-weight: 500;
+        font-family: 'Nunito', sans-serif;
+
+    }
+
+    .nextGroupTop p {
+        font-weight: 700;
+        font-family: "Nunito", sans-serif;
+    }
+
+    .nextGroupContent {
+        color: #6C6C6C;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 20px;
+    }
+
+    .nextGroupBtnGroup {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .nextGroupSyllabus {
+            border: 1.5px solid rgba(2, 63, 203, 1);
+        }
+
+        .nextGroupSyllabus:hover {
+            background: rgba(46, 110, 255, 1);
+            color: #ffffff;
+        }
+
+        .nextGroupApply {
+            background: #0739AC;
+            color: #FFFFFF;
+
+            &:hover {
+                background: #2E6EFF;
+            }
+        }
+    }
+
+    .nextGroupBtnGroup button {
+        padding: 6px 16px;
+        border-radius: 4px;
+        width: 100%;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 24px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease-in;
+    }
+
+    .loaderIcon {
+        animation: spin 1s linear infinite;
+    }
+
+
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

@@ -1,0 +1,160 @@
+.vacancyTitle {
+    width: 100%;
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%),
+        url('/images/home-bg.svg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0 50px 0;
+
+    .vacancyTitleContainer {
+        width: 85%;
+        max-width: 1216px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-start;
+        gap: 64px;
+
+        .vacancyTitleLeft {
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+            flex: 1;
+
+            .vacancyInfoBox {
+                border: 1px solid rgba(183, 183, 183, 0.15);
+                background: linear-gradient(to bottom,
+                        #F8FCFF 0%,
+                        #F8FCFF 50%,
+                        #FFFFFF00 100%);
+                padding: 12px 16px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                display: inline-flex;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;
+                gap: 24px;
+                flex-wrap: wrap;
+
+                .vacancyInfoItem {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+
+                    .infoLabel {
+                        font-weight: 500;
+                        color: #1e3a8a;
+                    }
+
+                    .infoValue {
+                        background-color: #e0f2fe;
+                        padding: 4px 8px;
+                        border-radius: 8px;
+                        font-size: 14px;
+                        font-weight: 500;
+                        color: #1e3a8a;
+                    }
+                }
+            }
+        }
+
+        .vacancyTitleLeft h1 {
+            font-size: 44px;
+            font-weight: 900;
+            font-family: 'Nunito', sans-serif;
+            line-height: 44px;
+            margin: 0;
+        }
+
+        .vacancyCompany {
+            font-size: 18px;
+            font-weight: 600;
+            color: #4b5563;
+        }
+
+        .vacancyLocation {
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .vacancyTitleRight {
+            width: 447px;
+            height: 250px;
+        }
+
+        .vacancyTitleRight img {
+            width: 100%;
+            border-radius: 8px;
+        }
+    }
+}
+
+@media(max-width:1200px){
+    .vacancyTitle{
+        .vacancyTitleContainer{
+            .vacancyTitleLeft{
+                .vacancyInfoBox{
+                    flex-direction: column;
+                    align-items:flex-start;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:1024px) {
+    .vacancyTitle {
+        .vacancyTitleContainer {
+            flex-direction: column;
+
+            .vacancyTitleLeft{
+                .vacancyInfoBox{
+                    flex-direction: row;
+                    align-items:center;
+                }
+            }
+            .vacancyTitleRight {
+                align-self: center;
+            }
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .vacancyTitle {
+        padding: 16px 0;
+
+        .vacancyTitleContainer {
+            width: 90%;
+
+            .vacancyTitleLeft h1 {
+                font-size: 32px;
+            }
+
+            .vacancyTitleRight {
+                width: 100%;
+                height: 350px;
+            }
+        }
+    }
+}
+
+@media(max-width:576px) {
+    .vacancyTitle {
+        .vacancyTitleContainer {
+            .vacancyTitleLeft{
+                .vacancyInfoBox{
+                    flex-direction: column;
+                    align-items:flex-start;
+                }
+            }
+            .vacancyTitleRight {
+                height: 250px;
+            }
+        }
+    }
+}
+

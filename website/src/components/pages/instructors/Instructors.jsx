@@ -1,0 +1,55 @@
+"use client";
+import dynamic from "next/dynamic";
+
+import { useGlobalData } from "@/contexts/GlobalDataContext";
+
+import GlobalDataWrapper from "@/components/shared/global-data-wrapper/GlobalDataWrapper";
+
+const InstructorsTitle = dynamic(
+  () => import("@/components/ui/instructors/InstructorsTitle"),
+  { ssr: false, loading: () => null }
+);
+
+const Instructors = dynamic(
+  () => import("@/components/ui/about/instructors/Instructors"),
+  { ssr: false, loading: () => null }
+);
+
+const Customers = dynamic(
+  () => import("@/components/ui/home/customers/Customers"),
+  { ssr: false, loading: () => null }
+);
+
+const CourseApplication = dynamic(
+  () => import("@/components/shared/course-application/CourseApplication"),
+  { ssr: false, loading: () => null }
+);
+
+import styles from "./instructors.module.css";
+
+const InstructorsPage = () => {
+  const { data, error, loading } = useGlobalData();
+
+  return (
+    <GlobalDataWrapper error={error.home} loading={loading.home}>
+      <section className={styles.instructors}>
+        <InstructorsTitle />
+        <Instructors
+          instructors={data.instructors}
+          loading={loading.home}
+          error={error.home}
+        />
+        <Customers
+          title="leadingCompaniesEmployingOurGraduates"
+          customers={data.customers}
+          loading={loading.home}
+          error={error.home}
+        />
+        <CourseApplication formContinue={true} />
+      </section>
+    </GlobalDataWrapper>
+    
+  );
+};
+
+export default InstructorsPage;

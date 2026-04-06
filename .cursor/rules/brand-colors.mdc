@@ -1,0 +1,27 @@
+---
+description: Ingress AI — brand colors from website/; use design tokens, not one-off hex
+alwaysApply: true
+---
+
+# Brand colors (canonical)
+
+Marketing UI in **`website/`** defines the business palette. When adding or styling **any page** or surface in this app, treat those blues and tints as the source of truth.
+
+## Hex reference (from `website/`)
+
+| Role | Hex | Notes |
+|------|-----|--------|
+| Primary | `#023FCB` | Links, primary buttons, active states |
+| Deep / gradient end | `#1746a2`, `#0739AC` | Darker blue, section headers, gradients |
+| Bright accent | `#2E6EFF` | CTAs, highlights |
+| Page / soft background | `#F8FCFF`, `#f6f9ff`, `#EAF3FF` | Section tints |
+| Body text (dark) | `#000F28`, `#101010`, `#333333` | Headings and copy |
+
+## Implementation in this repo
+
+- **Do not** introduce arbitrary hex/RGB for brand surfaces unless matching the table above.
+- **Do** use CSS variables in `src/index.css` (`:root` / `.dark`): `hsl(var(--primary))`, `--background`, `--foreground`, `--accent`, `--gradient-start`, `--gradient-end`, `--chat-*`, etc.
+- **Do** use Tailwind semantic classes: `bg-background`, `text-foreground`, `bg-primary`, `text-primary`, `border-border`, `ring-ring`, `from-[hsl(var(--gradient-start))]`, etc.
+- For one-off effects (glows, meshes), derive alpha from **`--primary`** or **`--accent`**, not unrelated hues (e.g. avoid random amber/sky if the goal is brand chrome).
+
+If the marketing site palette changes, update **`src/index.css`** first, then replace any stray hardcoded colors in components.

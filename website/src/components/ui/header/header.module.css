@@ -1,0 +1,21 @@
+.header {
+    background: white;
+
+    .headerContainer {
+        .firstDivider,.secondDivider {
+            width: 100%;
+            height: 1px;
+            background: #EAEAEA;
+        }
+    }
+}
+
+@media (max-width:768px) {
+    .header {
+        .headerContainer {
+            .firstDivider{
+                display: none;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.recommendedAdditionalTrainings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .title {
+    color: rgba(0, 58, 157, 1);
+    line-height: 28px;
+    font-weight: 700;
+    font-family: "Nunito", sans-serif;
+    font-size: 20px;
+  }
+
+  .description {
+    font-family: "Nunito", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgba(114, 114, 114, 1);
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}

@@ -1,0 +1,38 @@
+.courseApplication {
+    background: rgba(251, 253, 255, 1);
+    padding: 48px 0;
+
+    .courseApplicationContainer {
+        margin: 0 auto;
+        width: 85%;;
+        max-width: 1216px;
+        background: rgba(255, 255, 255, 1);
+        display: flex;
+        align-items: stretch;
+        border-radius: 4px;
+        border: 1px solid rgba(26, 26, 26, 0.1);
+
+
+    }
+}
+
+@media (max-width: 1024px) {
+    .courseApplication {
+
+        .courseApplicationContainer {
+            align-items: flex-start;
+            flex-direction: column-reverse;
+
+        }
+    }
+}
+
+
+@media (max-width:768px) {
+    .courseApplication {
+        .courseApplicationContainer {
+            width: 90%;
+
+        }
+    }
+}

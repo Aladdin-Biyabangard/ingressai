@@ -1,0 +1,52 @@
+.blogList,
+.isPaginationHide {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  max-width: 1216px;
+  width: 100%;
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 60vh;
+  text-align: center;
+  padding: 3rem;
+}
+
+.notFound h3 {
+  font-size: 1.5rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+  }
+
+.notFound p {
+  font-size: 1rem;
+  color: #718096;
+}
+
+@media (max-width: 1200px) {
+  .blogList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .blogList {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .isPaginationHide {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .isPaginationHide {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,43 @@
+
+.exploreCoursesContainer {
+    position: absolute;
+    top: 108px;
+    left: 0;
+    bottom: 0px;
+    right: 0;
+    height: calc(100vh - 108px);
+    z-index: 100;
+    background: rgba(38, 38, 38, 0.5);
+    transition: opacity 0.3s ease;
+
+    .exploreCoursesBox {
+        background: rgba(255, 255, 255, 1);
+        border-radius: 6px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        width: 85%;;
+        max-width: 1216px;
+        height: calc(100% - 40px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: fadeIn 0.3s ease-in-out;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .exploreCoursesContainer {
+        display: none;
+    }
+}

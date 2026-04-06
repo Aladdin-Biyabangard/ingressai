@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { Bot, ArrowLeft, Sparkles } from "lucide-react";
+import { Bot, ArrowLeft, Sparkles, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/i18n/LanguageSwitcher";
 import { HelpCenterConversation } from "@/components/chat/HelpCenterConversation";
+import { useAuth } from "@/contexts/AuthContext";
 import { useLocalePrefix } from "@/hooks/useLocalePrefix";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +12,12 @@ const ChatPage = () => {
   const navigate = useNavigate();
   const { prefix } = useLocalePrefix();
   const { t } = useTranslation();
+  const { logout } = useAuth();
+
+  const handleSignOut = async () => {
+    await logout();
+    navigate(`${prefix}/`, { replace: true });
+  };
 
   return (
     <div className="flex min-h-screen-dvh h-dvh min-w-0 flex-col overflow-hidden bg-background">
@@ -54,13 +61,24 @@ const ChatPage = () => {
             </p>
           </div>
 
-          <div
-            className={cn(
-              "shrink-0 rounded-xl border border-primary-foreground/25 bg-primary-foreground/10 p-0.5",
-              "shadow-sm backdrop-blur-sm",
-            )}
-          >
-            <LanguageSwitcher variant="minimal" className="border-0 bg-transparent" />
+          <div className="flex shrink-0 items-center gap-1">
+            <Button
+              type="button"
+              variant="ghost"
+              onClick={handleSignOut}
+              className="h-11 min-h-11 shrink-0 gap-2 px-2 text-primary-foreground hover:bg-primary-foreground/10 sm:h-10 sm:min-h-0 sm:px-3"
+            >
+              <LogOut className="h-5 w-5 shrink-0" aria-hidden />
+              <span className="sr-only sm:not-sr-only sm:truncate">{t("dashboard.signOut")}</span>
+            </Button>
+            <div
+              className={cn(
+                "rounded-xl border border-primary-foreground/25 bg-primary-foreground/10 p-0.5",
+                "shadow-sm backdrop-blur-sm",
+              )}
+            >
+              <LanguageSwitcher variant="minimal" className="border-0 bg-transparent" />
+            </div>
           </div>
         </div>
       </header>

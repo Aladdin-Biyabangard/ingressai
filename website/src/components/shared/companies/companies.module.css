@@ -1,0 +1,46 @@
+.customerLoaderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 78px;
+}
+
+.customersSliderContainer {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+
+}
+
+.customersSliderTrack {
+    display: grid;
+    will-change: transform;
+    gap: 20px;
+}
+
+@media (max-width:1024px) {
+    .customers {
+        gap: 24px;
+
+        .customersTop {
+            .customersTopTitle {
+                font-size: 24px;
+            }
+        }
+
+        .customersSliderTrack {
+            grid-template-columns: repeat(4, 1fr) !important;
+            grid-template-rows: repeat(2, 1fr);
+        }
+    }
+}
+
+
+@media (max-width:576px) {
+    .customers {
+        .customersSliderTrack {
+            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-rows: repeat(4, 1fr);
+        }
+    }
+}

@@ -1,0 +1,22 @@
+.customer{
+    width: inherit;
+    background:rgba(251, 251, 251, 1);
+    border: 1px solid rgba(236, 236, 236, 1);
+    border-radius:4px;
+    height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customer img{
+    width: 90%;
+    height: 90%;
+    object-fit: scale-down;
+}
+
+@media (max-width:1024px){
+    .customer{
+        width: 100%;
+    }
+}

@@ -1,0 +1,65 @@
+.instructorsContent {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+
+    .instructorsContentTitle h2 {
+        color: rgba(33, 37, 41, 1);
+        font-weight: 700;
+        line-height: 36px;
+        font-size: 28px;
+    }
+
+    .instructorsContentTitle {
+
+        .instructorsContentTitleColored {
+            color: rgba(254, 87, 32, 1);
+        }
+    }
+
+    .instructorsContentParagraph {
+        color: rgba(126, 129, 133, 1);
+        font-size: 16px;
+        line-height: 24px;
+        font-weight: 500;
+    }
+}
+
+.instructorsContentFlex {
+    .instructorsContentTitle {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        justify-content: center;
+    }
+
+    .instructorsContentParagraph {
+        text-align: center;
+    }
+}
+
+
+.instructorsContentBlock {
+    .instructorsContentTitle {
+        display: block;
+    }
+}
+
+
+@media (max-width:1024px) {
+    .instructorsContent {
+        .instructorsContentTitle {
+            font-size: 24px;
+        }
+    }
+}
+
+@media(max-width:768px) {
+    .instructorsContentFlex {
+        .instructorsContentTitle {
+            flex-direction: column;
+            gap: 0;
+        }
+    }
+}

@@ -1,0 +1,37 @@
+.recommendedAdditionalTraining {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .top {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+  }
+
+  .bottom {
+    color: rgba(16, 16, 16, 1);
+    font-weight: 400;
+    font-family: "Nunito", sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+  }
+}
+
+@media (max-width: 1024px) {
+  .recommendedAdditionalTraining {
+    .top {
+      flex-direction: column;
+      align-items: start;
+      gap: 16px;
+
+    }
+  }
+}

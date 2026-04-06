@@ -1,0 +1,14 @@
+.infoRightCourses{
+    position: absolute;
+    top: 88px;
+    right: -40px;
+    z-index: 1;
+    width: 172px;
+}
+
+@media (max-width:1024px){
+    .infoRightCourses{
+        right: 0px;
+        width: 120px;
+    }
+}

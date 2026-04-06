@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  padding: 12px 16px 16px 16px;
+  border-radius: 4px;
+  border: 1px solid rgba(231, 231, 231, 1);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+  max-height: 90px;
+}
+
+.extendable {
+  max-height: 600px;
+}

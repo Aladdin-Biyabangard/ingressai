@@ -1,0 +1,50 @@
+.subjectAreas {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 140px;
+    position: relative;
+
+    .subjectAreasTitle {
+        font-family: 'Nunito', sans-serif;
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: 700;
+        color: rgba(33, 37, 41, 1);
+        text-align: center;
+    }
+    .subjectAreasList{
+        width: 85%;;
+        max-width: 1216px;
+        margin: 0 auto;
+        min-height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .subjectAreasImage{
+        position: absolute;
+        right: 24px;
+        top: 70px;
+        z-index: 1;
+    }
+
+}
+
+
+@media (max-width:1024px){
+    .subjectAreas{
+        .subjectAreasImage{
+            top: 0;
+        }
+    }
+}
+
+@media (max-width:576px){
+    .subjectAreas{
+        .subjectAreasImage{
+            display: none;
+        }
+    }
+}

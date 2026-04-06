@@ -1,0 +1,87 @@
+.logo {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    gap: 17px;
+
+    .logoTop {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+
+        .logoText {
+
+            .logoTextContainer {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 18px;
+                line-height: 27px;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                text-transform: uppercase;
+                font-weight: 700;
+
+                .logoTextLeft {
+                    color: #233131;
+                }
+
+                .logoTextRight {
+                    color: #233131;
+                }
+            }
+
+            .logoTextBottom {
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 10px;
+                line-height: 15px;
+                letter-spacing: 2px;
+            }
+        }
+    }
+
+    .logoBottom {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+    }
+}
+
+@media(max-width:768px) {
+    .logo {
+        max-width: 220px;
+        width: max-content;
+
+        .logoTop {
+            .logoText {
+                .logoTextContainer {
+                    font-size: 16px;
+                }
+                .logoTextBottom{
+                    font-size: 8px;
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:300px){
+    .logo{
+        width: 100%;
+        max-width: 100%;
+        .logoTop{
+            .logoText{
+                display: none;
+            }
+            .logoBottom{
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+        }
+    }
+}

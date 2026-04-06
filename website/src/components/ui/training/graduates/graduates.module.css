@@ -1,0 +1,119 @@
+.graduates {
+    display: flex;
+    padding: 16px;
+    align-items: flex-start;
+    background: rgba(246, 250, 255, 1);
+    justify-content: space-between;
+
+    .graduatesLeft {
+        padding: 12px 7px;
+        width: 246px;
+    }
+
+    .graduatesLeft h2 {
+        color: rgba(0, 58, 157, 1);
+        font-size: 24px;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
+        line-height: 32px;
+    }
+
+    .graduatesLeft p {
+        color: rgba(96, 96, 96, 1);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .graduatesListWrapper::-webkit-scrollbar {
+        display: none;
+    }
+
+    .graduatesListWrapper {
+        min-height: 250px;
+        max-height: 470px;
+        overflow-y: auto;
+        scrollbar-width: none;
+
+        .graduatesList {
+            display: flex;
+            gap: 20px;
+
+            .graduatesAllList {
+                display: none;
+            }
+
+            .graduatesListFirstColumn,
+            .graduatesListSecondColumn {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                width: 240px;
+                max-width: 240px;
+                min-width: 240px;
+            }
+
+            .graduate {
+                transition: transform 0.3s ease;
+            }
+        }
+    }
+}
+
+.loaderContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 470px;
+}
+
+
+@media(max-width:1200px) {
+    .graduates {
+        flex-direction: column;
+        gap: 16px;
+
+        .graduatesLeft {
+            width: 100%;
+        }
+
+        .graduatesListWrapper {
+            width: 100%;
+
+            .graduatesList {
+                width: 100%;
+                justify-content: center;
+
+                .graduatesListFirstColumn,
+                .graduatesListSecondColumn {
+                    width: 45%;
+                    min-width: 45%;
+                    max-width: 45%;
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:425px) {
+    .graduates {
+        .graduatesListWrapper {
+            .graduatesList {
+                .graduatesAllList {
+                    display: flex;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                    width: 100%;
+                }
+
+                .graduatesListFirstColumn,
+                .graduatesListSecondColumn {
+                    display: none;
+                }
+            }
+        }
+    }
+}

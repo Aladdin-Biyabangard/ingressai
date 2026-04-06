@@ -1,0 +1,39 @@
+.selectSection {
+    box-shadow: 1px 1px 6px 0px #00000008;
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid #F2F2F2;
+    background: #FCFCFC;
+    border-radius: 4px;
+
+    .selectSectionItem {
+        color: #333333;
+        line-height: 20px;
+        font-size: 14px;
+        font-weight: 700;
+        padding: 12px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Nunito', sans-serif;
+        transition: all 0.3s ease-in;
+        user-select: none;
+
+        &:hover {
+            background: #EAF3FF;
+            color: #0739AC
+        }
+    }
+
+    .selectedSectionItem {
+        background: #EAF3FF;
+        color: #0739AC
+    }
+}
+
+@media (max-width:768px){
+    .selectSection{
+        display: none;
+    }
+}

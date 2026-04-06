@@ -1,0 +1,90 @@
+.categories {
+    position: relative;
+
+    .loaderContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+    }
+
+    .swiperContainer {
+        position: relative;
+        padding: 0 10px;
+
+        .customNav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 30px;
+            background: rgba(25, 33, 61, 0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            transition: all 0.3s ease;
+
+            &:hover {
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                transform: translateY(-50%) scale(1.05);
+            }
+
+            &.customPrev {
+                left: 0;
+            }
+
+            &.customNext {
+                right: 0;
+            }
+        }
+
+        .slide {
+            width: auto !important;
+        }
+
+        .category {
+            display: inline-block;
+            background: #dae5ff;
+            color: #040404;
+            font-weight: 550;
+            padding: 4px 20px;
+            border-radius: 20px;
+            min-width: max-content;
+            cursor: pointer;
+            transition: all 0.3s ease-in;
+
+            &:hover {
+                background: #023FCB;
+                color: #FFFFFF;
+            }
+
+
+            &.selectedCategory {
+                background: #023FCB;
+                color: #FFFFFF;
+            }
+        }
+
+        .category div {
+            user-select: none;
+            font-size: 12px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .category p {
+                user-select: none;
+                font-size: 8px;
+                font-family: 'Nunito', sans-serif;
+                margin: 2px 0 0;
+            }
+
+            &.selectedCategory {
+                background: #023FCB;
+                color: #FFFFFF;
+            }
+        }
+    }

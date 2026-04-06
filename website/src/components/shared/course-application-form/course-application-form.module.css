@@ -1,0 +1,655 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(17, 24, 39, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 90%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.courseApplicationContainer {
+  max-width: 900px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  flex: 1 1 250px;
+}
+
+.courseApplicationHeader {
+  padding: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  color: rgba(26, 26, 26, 1);
+}
+
+.courseApplicationSubHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.courseApplicationTitle {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 150%;
+  font-family: "Nunito", sans-serif;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 0;
+}
+
+.courseApplicationCopyUrl {
+  cursor: pointer;
+  cursor: pointer;
+  color: #023fcb;
+  text-decoration: underline;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+}
+
+.courseApplicationDescription {
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.courseApplicationForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.formSection {
+  padding: 0 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.sectionTitle {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.inputRow.single {
+  grid-template-columns: 1fr;
+}
+
+.inputRow.continue-row {
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+
+.inputGroupContinue {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 16px;
+  align-self: flex-end;
+}
+
+.phoneInputWrapper {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 0.75rem;
+}
+
+.phonePrefixSelect {
+  min-width: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.labelText {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required {
+  color: #ef4444;
+  font-size: 1.1rem;
+  margin-left: 0.25rem;
+  vertical-align: middle;
+}
+
+.checkboxGroup{
+  display: flex;
+  flex-direction: column;
+}
+
+.checkboxItem{
+  display: flex;
+  align-items:center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.courseApplicationFormInputGroup input,
+.courseApplicationFormInputGroup select,
+.courseApplicationFormInputGroup textarea,
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: #ffffff;
+  box-sizing: border-box;
+  font-family: inherit;
+  position: relative;
+}
+
+.courseApplicationFormInputGroup input:focus,
+.courseApplicationFormInputGroup select:focus,
+.courseApplicationFormInputGroup textarea:focus,
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+  transform: translateY(-1px);
+}
+
+.courseApplicationFormInputGroup input::placeholder,
+.courseApplicationFormInputGroup select::placeholder,
+.courseApplicationFormInputGroup textarea::placeholder,
+.input::placeholder,
+.select::placeholder,
+.textarea::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
+}
+
+.courseApplicationFormInputGroup input:hover:not(:focus),
+.courseApplicationFormInputGroup select:hover:not(:focus),
+.courseApplicationFormInputGroup textarea:hover:not(:focus),
+.input:hover:not(:focus),
+.select:hover:not(:focus),
+.textarea:hover:not(:focus) {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.courseApplicationFormInputGroup input.error,
+.courseApplicationFormInputGroup select.error,
+.courseApplicationFormInputGroup textarea.error,
+.input.error,
+.select.error,
+.textarea.error {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15);
+  animation: shake 0.5s ease-in-out;
+}
+
+.courseApplicationFormInputGroup select,
+.select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 1rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+  border: 2px solid #023fcb;
+  background-color: #fff;
+  min-height: 40px;
+  max-height: 250px;
+  color: #023fcb;
+}
+
+.courseApplicationFormInputGroup select:focus,
+.select:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23667eea' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  border-color: #023fcb;
+  box-shadow: 0 0 0 4px rgba(2, 63, 203, 0.10);
+}
+
+.courseApplicationFormInputGroup select[multiple],
+.select[multiple] {
+  min-height: 120px;
+  background: #f0f6ff;
+  background-image: none;
+  padding-right: 1.25rem;
+}
+
+.courseApplicationFormInputGroup select[multiple] option:checked,
+.select[multiple] option:checked {
+  background: rgba(2, 63, 203, 0.15) !important;
+  color: #023fcb;
+}
+
+.courseApplicationFormInputGroup textarea,
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+  padding-top: 1rem;
+  line-height: 1.6;
+}
+
+.errorMessage,
+.error {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ef4444;
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+}
+
+.errorMessage {
+  margin-top: 0.75rem;
+
+}
+
+.errorMessage::before {
+  content: '⚠';
+  font-size: 1rem;
+}
+
+.checkboxGroup {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  max-height: 250px;
+  overflow: auto;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  padding: 1rem;
+  border: 2px solid #f1f5f9;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background: #ffffff;
+  position: relative;
+}
+
+.checkboxLabel:hover {
+  border-color: #e2e8f0;
+  background: #f8fafc;
+  transform: translateY(1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.checkboxLabel:has(.checkbox:checked) {
+  border-color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+  accent-color: #667eea;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.checkboxText {
+  font-size: 0.95rem;
+  color: #374151;
+  font-weight: 500;
+}
+
+.submitSection {
+  display: flex;
+  justify-content: center;
+  padding: 0 2rem 2rem;
+}
+
+.courseApplicationFormSubmitBtn,
+.courseApplicationFormSubmitBtn button,
+.submitButton,
+.continue {
+  background: linear-gradient(135deg, rgba(2, 63, 203, 1) 0%, #1746a2 100%);
+  color: #fff;
+  border: none;
+  padding: 12px 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  height: 48px;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+  white-space: nowrap;
+}
+
+.courseApplicationFormSubmitBtn button:hover:not(:disabled),
+.submitButton:hover:not(:disabled),
+.continue:hover:not(:disabled) {
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+}
+
+.courseApplicationFormSubmitBtn button:active,
+.submitButton:active,
+.continue:active {
+  transform: translateY(-1px);
+}
+
+.courseApplicationFormSubmitBtn button:disabled,
+.submitButton:disabled,
+.continue:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.courseApplicationFormSubmitBtn button.loading,
+.submitButton.loading,
+.continue.loading {
+  pointer-events: none;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.progressIndicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.progressDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.progressDot.active {
+  background: #667eea;
+  transform: scale(1.2);
+}
+
+.progressDot.completed {
+  background: #10b981;
+}
+
+.floatingLabel {
+  position: relative;
+}
+
+.floatingLabel .floatingInput {
+  padding: 1.5rem 1.25rem 0.75rem 1.25rem;
+}
+
+.floatingLabel .floatingInput::placeholder {
+  opacity: 0;
+}
+
+.floatingLabel .floatingInput:focus+.floatingLabelText,
+.floatingLabel .floatingInput:not(:placeholder-shown)+.floatingLabelText {
+  transform: translateY(-0.75rem) scale(0.85);
+  color: #667eea;
+}
+
+.floatingLabel .floatingLabelText {
+  position: absolute;
+  left: 1.25rem;
+  top: 1rem;
+  color: #9ca3af;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  background: white;
+  padding: 0 0.25rem;
+  transform-origin: left top;
+}
+
+@media (max-width: 1024px) {
+  .courseApplicationContainer {
+    margin: 1rem;
+    border-radius: 16px;
+    flex: auto;
+  }
+
+  .courseApplicationHeader {
+    padding: 2rem 1.5rem;
+  }
+
+  .courseApplicationTitle {
+    font-size: 2rem;
+  }
+
+  .formSection {
+    padding: 0 1.5rem;
+  }
+
+  .submitSection {
+    padding: 0 1.5rem 2rem;
+  }
+
+  .inputRow {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .courseApplicationContainer {
+    margin: 0.5rem;
+    border-radius: 12px;
+  }
+
+  .courseApplicationHeader {
+    padding: 1.5rem 1rem;
+  }
+
+  .courseApplicationTitle {
+    font-size: 1.75rem;
+  }
+
+  .formSection {
+    padding: 0 1rem;
+  }
+
+  .submitSection {
+    padding: 0 1rem 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.2rem;
+  }
+
+  .inputRow {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .phoneInputWrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .inputRow.continue-row {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .checkboxGroup {
+    grid-template-columns: 1fr;
+  }
+
+  .courseApplicationFormSubmitBtn button,
+  .submitButton,
+  .continue {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .courseApplicationHeader {
+    padding: 1rem;
+  }
+
+  .courseApplicationTitle {
+    font-size: 1.5rem;
+  }
+
+  .formSection {
+    padding: 0 1rem;
+  }
+
+  .submitSection {
+    padding: 0 1rem 2rem;
+  }
+
+  .courseApplicationForm {
+    gap: 1.5rem;
+  }
+}
+
+/* Accessibility Enhancements */
+.courseApplicationFormInputGroup input:focus-visible,
+.courseApplicationFormInputGroup select:focus-visible,
+.courseApplicationFormInputGroup textarea:focus-visible,
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible,
+.submitButton:focus-visible,
+.continue:focus-visible,
+.checkbox:focus-visible {
+  outline: 3px solid rgba(102, 126, 234, 0.5);
+  outline-offset: 2px;
+}
+
+/* Smooth transitions for all interactive elements */
+.courseApplicationFormInputGroup input,
+.courseApplicationFormInputGroup select,
+.courseApplicationFormInputGroup textarea,
+.input,
+.select,
+.textarea,
+.checkboxLabel,
+.courseApplicationFormSubmitBtn button,
+.submitButton,
+.continue {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Success state animations */
+.formSuccess {
+  animation: successPulse 0.6s ease-in-out;
+}
+
+/* Keyframe Animations */
+@keyframes successPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-5px);
+  }
+
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

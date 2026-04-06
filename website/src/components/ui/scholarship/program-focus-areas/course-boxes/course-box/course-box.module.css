@@ -1,0 +1,19 @@
+.courseBoxItem {
+  border: 1px solid #E0E0E0;
+  padding: 12px 14px;
+  border-radius: 6px;
+  color: #333333;
+  font-size: 17px;
+  line-height: 20px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 250px;
+}
+
+@media (max-width:576px) {
+  .courseBoxItem {
+    max-width: 100%;
+  }
+}

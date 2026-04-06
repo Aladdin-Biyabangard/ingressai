@@ -1,0 +1,574 @@
+.certificateWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.previewImg {
+  display: none;
+  object-fit: contain;
+  z-index: 0;
+}
+.certificateContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  font-family: "Nunito", Arial, sans-serif;
+  background-color: #f7f9f9;
+  background-image: url("/images/cert-bg.png");
+  background-position: center;
+  background-size: cover;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+}
+
+.vertical .certificateContainer {
+  background-image: url("/images/cert-vertical.png");
+  max-width: 550px;
+}
+
+.vertical .certificateContainer {
+  aspect-ratio: 210 / 297;
+}
+
+.horizontal .certificateContainer {
+  aspect-ratio: 297 / 210;
+  max-width: 1000px;
+}
+
+.certificateOuterBorder {
+  padding: 0.5%;
+  height: 100%;
+}
+
+.certificateInnerBorder {
+  padding: 0.6%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: clamp(15px, 4vw, 50px);
+  margin-bottom: clamp(12px, 2.7vw, 32px);
+}
+
+.vertical .header {
+  width: auto;
+  height: 150px;
+  margin: 30px auto 20px auto;
+}
+
+.logoAndTitle {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(6px, 1.3vw, 16px);
+}
+
+.vertical .logoAndTitle {
+  width: auto;
+  height: 150px;
+}
+
+.logoAndTitle img {
+  object-fit: contain;
+  width: clamp(300px, 50vw, 500px);
+  height: clamp(70px, 10vw, 100px);
+}
+
+.vertical .logoAndTitle img {
+  width: auto;
+  height: 150px;
+}
+
+.ingress {
+  font-weight: 700;
+  color: #233131;
+  letter-spacing: 0.1em;
+  font-size: clamp(1rem, 2.5vw, 2rem);
+}
+
+.vertical .ingress {
+  font-size: 1.5rem;
+}
+
+.academy {
+  font-weight: 700;
+  color: #233131;
+  letter-spacing: 0.1em;
+  font-size: clamp(1rem, 2.5vw, 2rem);
+}
+
+.vertical .academy {
+  font-size: 1.5rem;
+}
+
+.slogan {
+  font-size: clamp(0.55rem, 1.8vw, 1rem);
+  font-weight: 300;
+  color: #586268;
+  letter-spacing: 0.25em;
+  margin-top: 4px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.vertical .slogan {
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+.name {
+  text-align: center;
+  font-size: clamp(1.1rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: #222;
+  margin-bottom: clamp(4px, 1vw, 10px);
+}
+
+.vertical .name {
+  font-size: 1.6rem;
+}
+
+.nameUnderline {
+  width: 50%;
+  height: clamp(1.5px, 0.3vw, 4px);
+  background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+  margin: 0 auto clamp(8px, 2vw, 24px);
+}
+
+.vertical .nameUnderline {
+  height: 3px;
+}
+
+.awardedText {
+  text-align: center;
+  font-size: clamp(0.7rem, 1.8vw, 1.3rem);
+  color: #555;
+  margin-bottom: clamp(-3px, -0.5vw, -6px);
+}
+
+.vertical .awardedText {
+  font-size: 1rem;
+}
+
+.diploma {
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  font-size: clamp(1.4rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: #0d49cc;
+  margin-bottom: clamp(2px, 0.7vw, 8px);
+}
+
+.vertical .diploma {
+  font-size: 2.5rem;
+}
+
+.requirements {
+  text-align: center;
+  font-size: clamp(0.7rem, 1.7vw, 1.3rem);
+  color: #555;
+  margin: clamp(-4px, -1vw, -12px) 0 clamp(3px, 0.8vw, 10px);
+}
+
+.vertical .requirements {
+  font-size: 1rem;
+  width: 45%;
+  margin: -10px auto 16px auto;
+}
+
+.course {
+  text-align: center;
+  font-size: clamp(0.9rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  color: #002370;
+  margin-bottom: clamp(6px, 1.5vw, 18px);
+  line-height: 1.2;
+  padding: 0 5px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.vertical .course {
+  font-size: 1.3rem;
+  line-height: 1.5;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.courseUnderline {
+  width: 60%;
+  height: clamp(1px, 0.2vw, 2.4px);
+  background: linear-gradient(to right, #b5c7eb, #d6e1f8);
+  margin: 10px auto clamp(6px, 1.2vw, 14px);
+}
+
+.vertical .courseUnderline {
+  width: 50%;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  width: 40%;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.horizontal .footer {
+  width: 60%;
+}
+
+.vertical .footer {
+  width: 80%;
+  gap: 0.8rem;
+}
+
+.date {
+  font-size: clamp(0.8rem, 2.2vw, 1.5rem);
+  color: #454032;
+  line-height: 1.1;
+}
+
+.vertical .date {
+  font-size: 1.2rem;
+}
+
+.label {
+  font-size: clamp(0.6rem, 1.7vw, 1.2rem);
+  color: #797979;
+  margin-top: 2px;
+}
+
+.vertical .label {
+  font-size: 1rem;
+}
+
+.signatureBlock {
+  text-align: left;
+}
+
+.signature img {
+  width: clamp(80px, 8vw, 100px);
+  height: clamp(40px, 8vw, 50px);
+}
+
+.vertical .signature {
+  font-size: 1.6rem;
+}
+
+.credentialId {
+  font-weight: 600;
+  font-size: 12px;
+  position: absolute;
+  bottom: 40px;
+  left: 50px;
+}
+
+.honourContainer {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.honourCert {
+  position: absolute;
+  display: inline-block;
+}
+
+.honourCert img {
+  width: clamp(50px, 8vw, 100px);
+  height: clamp(50px, 8vw, 100px);
+  display: block;
+}
+
+.vertical .honourCert img {
+  width: 80px;
+  height: 80px;
+}
+
+.honourText {
+  text-transform: uppercase;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: clamp(10px, 2vw, 14px);
+  font-weight: bold;
+  text-align: center;
+  pointer-events: none;
+}
+
+.vertical .credentialId {
+  bottom: 30px;
+  left: 30px;
+}
+.qrContainer {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.vertical .qrContainer {
+  bottom: 20px;
+  right: 20px;
+}
+.qrcode {
+  width: clamp(40px, 8vw, 100px);
+  height: clamp(40px, 8vw, 100px);
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+.vertical .qrcode {
+  width: 60px;
+  height: 60px;
+}
+
+.decorTopRight,
+.decorBottomLeft {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: clamp(100px, 20vw, 250px);
+  height: clamp(100px, 20vw, 250px);
+  z-index: 1;
+}
+
+@media (max-width: 500px) {
+  .certificateWrapper {
+    padding: 8px;
+  }
+
+  .certificateContainer {
+    padding: 10px;
+    justify-content: space-between;
+  }
+
+  .vertical .certificateContainer {
+    padding: 12px;
+    justify-content: space-between;
+  }
+
+  .header {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .vertical .header {
+    margin-top: 12px;
+    margin-bottom: 12px;
+  }
+
+  .logoAndTitle {
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .ingress,
+  .academy {
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+  }
+
+  .vertical .ingress,
+  .vertical .academy {
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+  }
+
+  .slogan {
+    font-size: 0.4rem;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+  }
+
+  .vertical .slogan {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    margin-top: 5px;
+  }
+
+  .name {
+    font-size: 0.85rem;
+    margin-bottom: 0;
+  }
+
+  .vertical .name {
+    font-size: 1.3rem;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .nameUnderline {
+    margin: 0 auto 0;
+    height: 1px;
+  }
+
+  .vertical .nameUnderline {
+    height: 2px;
+    margin: 0 auto 15px;
+  }
+
+  .awardedText {
+    font-size: 0.5rem;
+  }
+
+  .vertical .awardedText {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .diploma {
+    font-size: 1.2rem;
+  }
+
+  .vertical .diploma {
+    font-size: 2.1rem;
+    margin-bottom: 15px;
+  }
+
+  .requirements {
+    font-size: 0.5rem;
+  }
+
+  .vertical .requirements {
+    font-size: 0.75rem;
+    width: 50%;
+    margin: -8px auto 12px auto;
+  }
+
+  .course {
+    font-size: 0.65rem;
+    line-height: 1.1;
+  }
+
+  .vertical .course {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    max-width: 65% !important;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+
+  .courseUnderline {
+    height: 1px;
+  }
+
+  .vertical .courseUnderline {
+    height: 2px;
+    margin: 0 auto 25px;
+    width: 55%;
+  }
+
+  .footer {
+    width: 80%;
+    gap: 0.3rem;
+  }
+
+  .vertical .footer {
+    width: 70%;
+    gap: 0.7rem;
+    justify-content: space-between;
+  }
+
+  .date {
+    font-size: 0.55rem;
+  }
+
+  .vertical .date {
+    font-size: 0.8rem;
+  }
+
+  .label {
+    font-size: 0.45rem;
+  }
+
+  .vertical .label {
+    font-size: 0.65rem;
+    margin-top: 2px;
+  }
+
+  .signature {
+    font-size: 0.55rem;
+  }
+
+  .vertical .signature {
+    font-size: 0.8rem;
+  }
+
+  .qrcode {
+    width: 35px;
+    height: 35px;
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+
+  .vertical .qrcode {
+    width: 55px;
+    height: 55px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .certificateWrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 297 / 210;
+  }
+  .previewImg {
+    display: block;
+  }
+  .certificateContainer {
+    display: none;
+  }
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+  .certificateWrapper {
+    padding: 12px;
+  }
+
+  .footer {
+    width: 55%;
+  }
+
+  .horizontal .footer {
+    width: 65%;
+  }
+
+  .vertical .footer {
+    width: 60%;
+  }
+}
+
+@media (min-width: 769px) {
+  .certificateWrapper {
+    padding: 20px;
+  }
+}

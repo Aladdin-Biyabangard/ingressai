@@ -1,0 +1,54 @@
+.programFocusAreas {
+    width: 85%;;
+    max-width: 1216px;
+    margin: 0 auto;
+    padding: 48px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 38px;
+
+    .programFocusAreasTop {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 16px;
+    }
+
+    .programFocusAreasTop div {
+        color: #212529;
+        font-size: 32px;
+        line-height: 48px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .programFocusAreasTop p {
+        color: #7E8185;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 24px;
+    }
+
+    .programFocusAreasLoaderContainer {
+        min-height: 112px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .programFocusAreasBottom {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        width: 100%;
+    }
+
+}
+
+
+@media (max-width:768px){
+    .programFocusAreas{
+        width: 90%;
+    }
+}

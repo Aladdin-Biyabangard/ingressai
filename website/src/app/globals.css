@@ -1,0 +1,188 @@
+:root{
+  --primary-color: #3F79FF;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+/* ==================================================
+   RICH CONTENT GLOBAL STYLES
+   Applies ONLY to <RichContent />
+================================================== */
+
+.rich-content {
+  width: 100%;
+  overflow: visible;
+}
+
+/* =========================
+   RESET INLINE HEIGHTS
+========================= */
+
+.rich-content table,
+.rich-content tbody,
+.rich-content tr,
+.rich-content td {
+  height: auto !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+/* =========================
+   TABLE → FLEX GRID
+========================= */
+
+.rich-content table {
+  width: 100% !important;
+  display: block !important;
+  border: none !important;
+  border-collapse: collapse !important;
+}
+
+.rich-content tbody {
+  display: block !important;
+  width: 100%;
+}
+
+.rich-content tr {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Auto width calculation */
+.rich-content td {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1 1 min(260px, 100%);
+  max-width: 100%;
+  padding: 0 !important;
+  border: none !important;
+}
+
+/* =========================
+   IMAGES
+========================= */
+
+.rich-content img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+  object-fit: contain;
+}
+
+/* Prevent hidden overflow */
+.rich-content * {
+  overflow: visible !important;
+}
+
+/* =========================
+   RESPONSIVE BREAKPOINTS
+========================= */
+
+@media (max-width: 1024px) {
+  .rich-content td {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 640px) {
+  .rich-content td {
+    flex: 1 1 100%;
+  }
+}
+
+/* =========================
+   CODE BLOCKS (PRISM SAFE)
+========================= */
+
+.rich-content pre[class*="language-"] {
+  background: #1e1e1e;
+  border-radius: 8px;
+  padding: 16px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+.rich-content code:not([class*="language-"]) {
+  background: #f3f4f6;
+  padding: 2px 6px;
+  border-radius: 4px;
+}

@@ -1,0 +1,375 @@
+/* Base styles for PDF generation */
+.pdf {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #f5f5f5;
+    padding: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page {
+    width: 595px;
+    min-height: 842px;
+    position: relative;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: always;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+/* New section starts on a new page */
+.page.newSection {
+    page-break-before: always;
+    break-before: always;
+}
+
+.pageWrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 842px;
+    overflow: hidden;
+}
+
+.bg {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+}
+
+.pageContent {
+    position: relative;
+    z-index: 10;
+    padding: 80px 50px 50px 50px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    min-height: 842px;
+}
+
+.coverContent {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.trainingTitle {
+    position: absolute;
+    top: 584px;
+    left: 320px;
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 10;
+    line-height: 1.3;
+    max-width: 250px;
+    word-wrap: break-word;
+}
+
+.trainingDescription {
+    position: absolute;
+    top: 584px;
+    left: 48px;
+    color: white;
+    font-size: 14px;
+    max-width: 215px;
+    z-index: 10;
+    line-height: 1.4;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Syllabus section with auto-pagination */
+.syllabusSection {
+    width: 595px;
+    position: relative;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    page-break-before: always;
+    break-before: always;
+    background-image: url('/images/pdf-bg.jpg');
+    background-size: 595px 842px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: local;
+}
+
+.syllabusPage {
+    position: relative;
+    width: 100%;
+    min-height: 842px;
+    box-sizing: border-box;
+    overflow: visible;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    background-image: url('/images/pdf-bg.jpg');
+    background-size: 595px 842px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: local;
+}
+
+.syllabusContent {
+    position: relative;
+    z-index: 10;
+    padding: 80px 50px 50px 50px;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 842px;
+    background-image: url('/images/pdf-bg.jpg');
+    background-size: 595px 842px;
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-attachment: local;
+}
+
+.syllabusContainer {
+    height: 100%;
+    overflow: visible;
+}
+
+.syllabusContainer>* {
+    page-break-inside: avoid;
+}
+
+@media print {
+    @page {
+        size: A4;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .pdf {
+        width: 210mm !important;
+        padding: 0 !important;
+        gap: 0 !important;
+        background: white !important;
+        display: block !important;
+    }
+
+    .page {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        height: 297mm !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        page-break-after: always !important;
+        break-after: always !important;
+        overflow: hidden !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        display: block !important;
+    }
+
+    .page.newSection {
+        page-break-before: always !important;
+        break-before: always !important;
+    }
+
+    .pageWrapper {
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        position: relative !important;
+        overflow: hidden !important;
+    }
+
+    .bg {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        z-index: 1 !important;
+        display: block !important;
+    }
+
+    .pageContent {
+        position: relative !important;
+        z-index: 10 !important;
+        padding: 25mm 15mm 15mm 15mm !important;
+        width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
+    }
+
+    .coverContent {
+        position: relative !important;
+        z-index: 10 !important;
+        width: 210mm !important;
+        height: 297mm !important;
+    }
+
+    .trainingTitle {
+        position: absolute !important;
+        top: 206mm !important;
+        left: 113mm !important;
+        color: #000 !important;
+        font-size: 16pt !important;
+        font-weight: 600 !important;
+        z-index: 10 !important;
+        line-height: 1.3 !important;
+        max-width: 90mm !important;
+        word-wrap: break-word !important;
+    }
+
+    .trainingDescription {
+        position: absolute !important;
+        top: 206mm !important;
+        left: 17mm !important;
+        color: white !important;
+        font-size: 12pt !important;
+        max-width: 76mm !important;
+        z-index: 10 !important;
+        line-height: 1.4 !important;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Syllabus section in print mode */
+    .syllabusSection {
+        width: 210mm !important;
+        margin: 0 !important;
+        box-sizing: border-box !important;
+        page-break-before: always !important;
+        break-before: always !important;
+        background-image: url('/images/pdf-bg.jpg') !important;
+        background-size: 210mm 297mm !important;
+        background-position: top left !important;
+        background-repeat: repeat !important;
+        background-attachment: local !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .syllabusPage {
+        position: relative !important;
+        width: 210mm !important;
+        min-height: 297mm !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+        box-shadow: none !important;
+        border-radius: 0 !important;
+        background-image: url('/images/pdf-bg.jpg') !important;
+        background-size: 210mm 297mm !important;
+        background-position: top left !important;
+        background-repeat: repeat !important;
+        background-attachment: local !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        margin-bottom: 2cm !important ;
+        padding-bottom: 2cm !important
+    }
+
+    .syllabusContent {
+        position: relative !important;
+        z-index: 10 !important;
+        padding: 25mm 15mm 15mm 15mm !important;
+        width: 210mm !important;
+        box-sizing: border-box !important;
+        min-height: 297mm !important;
+        background-image: url('/images/pdf-bg.jpg') !important;
+        background-size: 210mm 297mm !important;
+        background-position: top left !important;
+        background-repeat: repeat !important;
+        background-attachment: local !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        margin-bottom: 2cm !important ;
+        padding-bottom: 2cm !important;
+    }
+
+    .syllabusContainer {
+        height: auto !important;
+        overflow: visible !important;
+        page-break-inside: auto !important;
+    }
+
+    /* Enhanced page break controls */
+    .syllabusContainer>* {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* Ensure proper page breaks for large content */
+    .syllabusContainer h1,
+    .syllabusContainer h2,
+    .syllabusContainer h3,
+    .syllabusContainer h4,
+    .syllabusContainer h5,
+    .syllabusContainer h6 {
+        page-break-after: avoid !important;
+        page-break-inside: avoid !important;
+        break-after: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    .syllabusContainer table {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    .syllabusContainer tr {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    .syllabusContainer ul,
+    .syllabusContainer ol {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    .syllabusContainer li {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* Hide download buttons and other UI elements */
+    .downloadSyllabus,
+    .download-button,
+    .action-button {
+        display: none !important;
+    }
+
+    /* Apply color adjustments to all elements */
+    .pdf,
+    .page,
+    .pageWrapper,
+    .bg,
+    .pageContent,
+    .coverContent,
+    .trainingTitle,
+    .trainingDescription,
+    .syllabusSection,
+    .syllabusPage,
+    .syllabusContent,
+    .syllabusContainer {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .trainingTitle,
+    .trainingDescription {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}

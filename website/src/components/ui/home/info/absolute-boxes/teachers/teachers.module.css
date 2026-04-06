@@ -1,0 +1,15 @@
+.infoRightTeachers{
+    position: absolute;
+    z-index: 1;
+    top:23px;
+    left: -100px;
+    width: 244px;
+}
+
+@media (max-width:1024px){
+    .infoRightTeachers{
+        top: -40px;
+        left: 0;
+        width: 176px;
+    }
+}

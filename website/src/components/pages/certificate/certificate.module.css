@@ -1,0 +1,7 @@
+.certificate {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  background: #f7f7fa;
+  padding-bottom: 60px;
+}

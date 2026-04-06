@@ -1,0 +1,29 @@
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(217, 219, 233, 1);
+    padding-bottom: 16px;
+    .icon {
+      cursor: pointer;
+    }
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 0 11px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding: 0;
+    max-height: 0;
+  }
+  .expanded {
+    max-height: 250px;
+    padding: 11px 0;
+  }
+}

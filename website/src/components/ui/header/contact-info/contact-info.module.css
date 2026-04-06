@@ -1,0 +1,42 @@
+.contactInfo {
+    height: 42px;
+    background: #f7f9ff;
+    width: 100%;
+
+    .contactInfoBox {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        width: 85%;
+        margin: 0 auto;
+        height: 100%;
+        max-width: 1216px;
+
+
+        .contactInfoItem {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            padding-right: 16px;
+            border-right: 1px solid #DBDBDB;
+
+
+            .contactInfoText {
+                font-family: 'Nunito', sans-serif;
+                color: #363636;
+                font-weight: 300;
+                line-height: 20px;
+                font-size: 14px;
+
+            }
+        }
+    }
+}
+
+
+@media (max-width: 768px) {
+    .contactInfo {
+        display: none;
+    }
+}

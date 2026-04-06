@@ -1,0 +1,131 @@
+.ourCoursesLoaderContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+}
+
+.ourCoursesList {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+
+    .slide {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        max-width: 292px;
+        overflow: visible !important;
+    }
+}
+
+.swiperContainer {
+    position: relative;
+
+    .customNav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 48px;
+        height: 48px;
+        background: rgba(25, 33, 61, 0.4);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        transition: all 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        &.customPrev {
+            left: 0;
+        }
+
+        &.customNext {
+            right: 0;
+        }
+    }
+
+}
+
+.swiperContainer .swiper {
+    display: flex;
+    padding: 20px; /* Add padding to accommodate box shadows */
+    margin: -20px; 
+}
+
+.swiperContainer .swiper-wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+.swiperContainer .swiper-slide {
+    height: auto !important;
+    display: flex;
+}
+
+.swiperContainer .slide {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    min-height: 375px;
+    max-width: 292px;
+}
+
+@media (max-width:1200px) {
+
+    .ourCoursesList{
+        .slide{
+            flex-shrink:0;
+            flex-grow: 1;
+            flex-basis: 225px;
+        }
+    }
+    .relatedCourses {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+
+@media (max-width:1024px) {
+    .relatedCourses {
+        place-items: center;
+        grid-template-columns: repeat(1, 1fr) !important;
+    }
+}
+
+@media(max-width: 768px) {
+    .ourCourses {
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .relatedCourses {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .slide {
+        align-items: center !important;
+    }
+}
+
+@media (max-width:576px) {
+    .ourCourses {
+        grid-template-columns: 1fr !important;
+    }
+
+    .relatedCourses {
+        grid-template-columns: 1fr !important;
+    }
+}

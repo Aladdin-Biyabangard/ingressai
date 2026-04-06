@@ -1,0 +1,51 @@
+.filterGroup {
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border: 1px solid #F2F2F2;
+    background: #FCFCFC;
+    border-radius: 4px;
+    box-shadow: 1px 1px 6px 0px #00000008;
+    flex: 1;
+}
+
+.title {
+    color: #333333;
+    line-height: 20px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 4px;
+    font-family: 'Nunito', sans-serif;
+    transition: all .3s ease-in;
+    user-select: none;
+}
+
+.loader {
+    width: 100%;
+    min-height: 270px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    user-select: none;
+    cursor: pointer;
+}
+
+.option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #0070f3;
+    cursor: pointer;
+}

@@ -1,0 +1,109 @@
+.courseApplicationLeft {
+    flex: 1;
+    border-right: 1px solid rgba(239, 239, 239, 1);
+    padding: 32px 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+
+    .courseApplicationLeftTop {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .courseApplicationLeftTopTitle {
+            color: rgba(26, 26, 26, 1);
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 150%;
+        }
+
+        .courseApplicationLeftDescription {
+            color: rgba(26, 26, 26, 1);
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 150%;
+        }
+
+        .courseApplicationContact {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+
+            .courseApplicationContactIcon {
+                height: 36px;
+                width: 36px;
+                min-width: 36px;
+                min-height: 36px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(2, 63, 203, 1);
+            }
+
+            .contactForCourseApplicationContactKey {
+                color: rgba(0, 0, 0, 1);
+                font-weight: 700;
+                font-size: 20px;
+                font-family: 'Nunito', sans-serif;
+                line-height: 140%;
+            }
+
+            .contactForCourseApplicationContactText {
+                font-weight: 500;
+                line-height: 150%;
+                font-size: 20px;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .courseApplicationLeftBottom {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .courseApplicationLeftBottomTitle {
+            color: rgba(0, 0, 0, 1);
+            font-weight: 700;
+            font-family: 'Nunito', sans-serif;
+            font-size: 20px;
+            line-height: 140%;
+        }
+    }
+}
+
+@media (max-width:1024px) {
+    .courseApplicationLeft {
+        border-right: none;
+        gap: 32px;
+
+        .courseApplicationLeftTop {
+            .courseApplicationLeftTopTitle {
+                font-size: 32px;
+            }
+
+            .courseApplicationContact {
+
+                .contactForCourseApplicationContactKey,
+                .contactForCourseApplicationContactText {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width:768px) {
+    .courseApplicationLeft {
+        padding: 16px;
+        .courseApplicationLeftTop{
+            .courseApplicationLeftTopTitle{
+                font-size: 24px;
+            }
+        }
+    }
+}

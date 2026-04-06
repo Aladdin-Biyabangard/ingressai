@@ -1,0 +1,69 @@
+.historyMission {
+    background: linear-gradient(to bottom,
+            #F8FCFF 0%,
+            #F8FCFF 50%,
+            #FFFFFF00 100%),
+        url('/images/home-bg.svg') no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 50px 0;
+
+    .historyMissionContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+        width: 85%;;
+        max-width: 1216px;
+        margin: 0 auto;
+    }
+
+    .historyMissionItem {
+        max-width: 866px;
+
+        &:last-child {
+            margin-left: max(0px, min(350px, 60vw));
+        }
+    }
+
+}
+
+
+@media (max-width:1200px) {
+    .historyMission {
+        .historyMissionContainer {
+            .historyMissionItem {
+                &:last-child {
+                    margin-left: max(0px, min(250px, 20vw));
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width:1024px) {
+    .historyMission {
+        .historyMissionContainer {
+            .historyMissionItem {
+                &:last-child {
+                    margin-left: max(0px, min(200px, 10vw));
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width:768px) {
+    .historyMission {
+        .historyMissionContainer {
+            width: 90%;
+
+            .historyMissionItem {
+                &:last-child {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+}

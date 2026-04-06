@@ -1,0 +1,114 @@
+.whyChooseUs {
+  width: 85%;
+  max-width: 1216px;
+  padding: 48px 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .whyChooseUsTitle {
+    text-align: center;
+    font-family: "Nunito", sans-serif;
+    color: rgba(33, 37, 41, 1);
+    font-size: 32px;
+    line-height: 48px;
+    font-weight: 700;
+  }
+
+  .whyChooseUsDetails {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 32px;
+
+    .whyChooseUsDetailsLeft {
+      width: 40%;
+
+      .whyChooseUsDetailsLeftBg {
+        background: url("/images/why-choose-us.png") no-repeat center center;
+        background-size: contain;
+        width: 380px;
+        max-width: 380px;
+        aspect-ratio: 1 / 1;
+      }
+    }
+
+    .whyChooseUsDetailsRight {
+      width: 712px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+
+      .whyChooseUsDetail {
+        max-width: 496px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1330px) {
+  .whyChooseUs {
+    .whyChooseUsDetails {
+      .whyChooseUsDetailsRight {
+        width: auto;
+
+        .whyChooseUsDetail {
+          margin-left: 20px !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .whyChooseUs {
+    padding: 48px 0 0 0;
+
+    .whyChooseUsDetails {
+      flex-direction: column-reverse;
+      gap: 24px;
+
+      .whyChooseUsDetailsLeft {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 0;
+
+        .whyChooseUsDetailsLeftBg {
+          width: 100%;
+          height: 492px;
+          background: url("/images/why-choose-us.png") no-repeat center center;
+          background-size: contain;
+        }
+      }
+
+      .whyChooseUsDetailsRight {
+        .whyChooseUsDetail {
+          width: 100%;
+          max-width: 100%;
+          margin: 0 !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .whyChooseUs {
+    width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .whyChooseUs {
+    .whyChooseUsDetailsLeft {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}

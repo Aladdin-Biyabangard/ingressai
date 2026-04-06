@@ -1,28 +1,31 @@
 import axios, { type AxiosInstance } from "axios";
 
-const API_DOMAIN = import.meta.env.VITE_API_DOMAIN ?? "/";
-
-function getMsUrl(servicePath: string): string {
-  const trimmed = servicePath.trim();
-  if (/^https?:\/\//i.test(trimmed)) {
-    return trimmed.replace(/\/+$/, "");
-  }
-  const baseDomain = API_DOMAIN.endsWith("/") ? API_DOMAIN.slice(0, -1) : API_DOMAIN;
-  const updatedDomain =
-    typeof window === "undefined"
-      ? (import.meta.env.VITE_DOMAIN ?? "https://ingress.academy")
-      : baseDomain;
-  const path = trimmed.startsWith("/") ? trimmed : `/${trimmed}`;
-  return `${updatedDomain}${path}`;
+/** Trailing slash silinir; boş string build/env xətası ola bilər — dəyərlər build skriptindən gəlir. */
+function trimBase(url: string | undefined): string {
+  return (url ?? "").trim().replace(/\/+$/, "");
 }
 
-type CreateInstanceOptions = {
-  withCredentials?: boolean;
-};
+/**
+ * Auth, chat və s. — `VITE_BASE_URL`. Lokal `vite`: boşdursa defolt `http://localhost:9190/api`.
+ * `VITE_LOCAL_GATEWAY_URL` DEV-də alternativ ünvan ola bilər.
+ */
+function resolveAppApiBase(): string {
+  const explicit = trimBase(import.meta.env.VITE_BASE_URL);
+  if (explicit) return explicit;
+  const override = trimBase(import.meta.env.VITE_LOCAL_GATEWAY_URL);
+  if (override) return override;
+  if (import.meta.env.DEV) return "http://localhost:9190/api";
+  return "";
+}
 
-function createAxiosInstance(servicePath: string, options?: CreateInstanceOptions): AxiosInstance {
-  const baseURL = getMsUrl(servicePath);
+const courseApiBase = trimBase(import.meta.env.VITE_COURSE_MS_URL);
+const courseMsRoot = courseApiBase.replace(/\/api\/?$/i, "") || courseApiBase;
 
+const appApiBase = resolveAppApiBase();
+
+type CreateOpts = { withCredentials?: boolean };
+
+function createAxiosInstance(baseURL: string, options?: CreateOpts): AxiosInstance {
   const instance = axios.create({
     baseURL,
     withCredentials: options?.withCredentials ?? false,
@@ -30,9 +33,7 @@ function createAxiosInstance(servicePath: string, options?: CreateInstanceOption
       "Content-Type": "application/json",
       "Cache-Control": "no-store",
     },
-    paramsSerializer: {
-      indexes: null,
-    },
+    paramsSerializer: { indexes: null },
   });
 
   instance.interceptors.request.use((config) => {
@@ -50,19 +51,26 @@ function createAxiosInstance(servicePath: string, options?: CreateInstanceOption
   return instance;
 }
 
-export const customAxios = createAxiosInstance(import.meta.env.VITE_BASE_URL || "course-ms/api");
-/** Course MS kökü `/api` olmadan (məs. `v1/courses/…/info`). `VITE_BASE_URL` sonundakı `/api` çıxarılır. */
-const courseMsRootPath =
-  (import.meta.env.VITE_BASE_URL || "course-ms/api").replace(/\/api\/?$/, "") || "course-ms";
-export const courseMsAxios = createAxiosInstance(courseMsRootPath);
-export const chatAxios = createAxiosInstance(import.meta.env.VITE_CHAT_MS_URL || "chat-ms/api");
+export const customAxios = createAxiosInstance(courseApiBase);
+export const courseMsAxios = createAxiosInstance(courseMsRoot);
+export const chatAxios = createAxiosInstance(appApiBase);
+export const authAxios = createAxiosInstance(appApiBase, { withCredentials: true });
 
-/** Same service as chat by default; must use `withCredentials` for refresh cookies. */
-const authServicePath =
-  import.meta.env.VITE_AUTH_MS_URL ||
-  import.meta.env.VITE_CHAT_MS_URL ||
-  "chat-ms/api";
-export const authAxios = createAxiosInstance(authServicePath, { withCredentials: true });
+/** Cookie/credential auth paths — no Bearer; 401 here must not trigger refresh (avoids refresh→401 deadlock). */
+const AUTH_PUBLIC_PATH_FRAGMENTS = [
+  "v1/auth/sign-in",
+  "v1/auth/sign-up",
+  "v1/auth/resend-otp",
+  "v1/auth/refresh",
+  "v1/auth/forgot-password",
+  "v1/auth/verify-otp",
+  "v1/auth/reset-password",
+  "v1/auth/validate-referral-code",
+] as const;
+
+function isAuthPublicPath(url: string | undefined): boolean {
+  return Boolean(url && AUTH_PUBLIC_PATH_FRAGMENTS.some((fragment) => url.includes(fragment)));
+}
 
 type AuthInterceptorConfig = {
   getAccessToken: () => string | null;
@@ -71,8 +79,9 @@ type AuthInterceptorConfig = {
 };
 
 type BearerInterceptorOptions = {
-  /** When true, do not send `Authorization` (e.g. public or cookie-only auth routes). */
   skipAuthHeader?: (requestUrl: string | undefined) => boolean;
+  /** When true, 401 is passed through — do not chain another refresh (critical for `v1/auth/refresh`). */
+  skipRefreshRetryOn401?: (requestUrl: string | undefined) => boolean;
 };
 
 function installBearerInterceptors(
@@ -113,6 +122,9 @@ function installBearerInterceptors(
       if (status !== 401 || !original || original._authRetry) {
         return Promise.reject(error);
       }
+      if (options?.skipRefreshRetryOn401?.(original.url)) {
+        return Promise.reject(error);
+      }
       original._authRetry = true;
       const next = await refreshOnce();
       if (!next) {
@@ -137,21 +149,9 @@ export function setupChatAuthInterceptors(config: AuthInterceptorConfig): void {
   installBearerInterceptors(chatAxios, config, chatAuthInstalled);
 }
 
-/** Cookie-only or public — Spring must not require Bearer here; refresh uses `Path=/api/v1/auth` cookie + `withCredentials`. */
-const AUTH_MS_SKIP_BEARER_SUBSTRINGS = [
-  "v1/auth/sign-in",
-  "v1/auth/sign-up",
-  "v1/auth/resend-otp",
-  "v1/auth/refresh",
-  "v1/auth/forgot-password",
-  "v1/auth/verify-otp",
-  "v1/auth/reset-password",
-] as const;
-
-/** Auth MS: `sign-out` expects Bearer + roles; other `/v1/auth/*` calls stay public/cookie-only per route. */
 export function setupAuthMsInterceptors(config: AuthInterceptorConfig): void {
   installBearerInterceptors(authAxios, config, authMsAuthInstalled, {
-    skipAuthHeader: (url) =>
-      Boolean(url && AUTH_MS_SKIP_BEARER_SUBSTRINGS.some((fragment) => url.includes(fragment))),
+    skipAuthHeader: isAuthPublicPath,
+    skipRefreshRetryOn401: isAuthPublicPath,
   });
 }

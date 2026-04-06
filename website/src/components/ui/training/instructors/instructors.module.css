@@ -1,0 +1,35 @@
+.instructors {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .loaderContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 246px;
+        width: 100%;
+    }
+
+    .instructorsTop {
+        color: rgba(0, 58, 157, 1);
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+    }
+
+    .instructorsList {
+        display: flex;
+        align-items: stretch;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+
+        .instructor {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+        }
+    }
+}

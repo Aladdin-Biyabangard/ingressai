@@ -1,0 +1,13 @@
+.infoRightStudents{
+    position: absolute;
+    z-index: 1;
+    bottom:-30px;
+    left:50px;
+    width: 244px;
+}
+
+@media (max-width:1024px){
+    .infoRightStudents{
+        width: 176px;
+    }
+}

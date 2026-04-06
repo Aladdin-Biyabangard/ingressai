@@ -1,0 +1,36 @@
+.roles {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .rolesTop {
+        color: rgba(0, 58, 157, 1);
+        line-height: 28px;
+        font-weight: 700;
+        font-family: 'Nunito', sans-serif;
+        font-size: 20px;
+    }
+
+    .rolesBottom {
+        border: 1px solid rgba(183, 183, 183, 0.15);
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.002) 0%, rgba(0, 0, 0, 0) 100%),
+            linear-gradient(180deg, rgba(236, 245, 255, 0.5) 0%, rgba(236, 239, 255, 0) 100%);
+        box-shadow: 3px 3px 17.82px -4px rgba(0, 0, 0, 0.05);
+        box-shadow: 0.69px 0.69px 4.08px -2.67px rgba(0, 0, 0, 0.17);
+        box-shadow: 0.18px 0.18px 1.07px -1.33px rgba(0, 0, 0, 0.19);
+        border-radius: 4px;
+        padding: 24px 16px;
+        color: rgba(16, 16, 16, 1);
+        font-weight: 400;
+        font-family: 'Nunito', sans-serif;
+        font-size: 14px;
+        line-height: 20px;
+
+
+        .rolesAndResponsibilitiesArray{
+            list-style-type: disc;
+            padding-left: 15px;
+        }
+
+    }
+}

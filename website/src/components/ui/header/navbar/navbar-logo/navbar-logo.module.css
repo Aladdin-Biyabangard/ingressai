@@ -1,0 +1,87 @@
+.menuContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    z-index: 100;
+
+    &.menuOpen {
+        animation: slideDown 0.3s ease-in-out forwards;
+    }
+
+    &.menuClose {
+        animation: slideUp 0.3s ease-in-out forwards;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.navbarLeft {
+    display: flex;
+    align-items: center;
+
+    .navbarLeftButton {
+        position: relative;
+
+        .navbarLeftButtonContainer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(219, 219, 219, 1);
+            cursor: pointer;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+
+            &.navbarLeftButtonContainerOpen {
+                background-color: rgba(0, 113, 227, 0.08);
+                color: #0071E3;
+            }
+
+            .navbarLeftButtonText {
+                font-size: 14px;
+                font-weight: 700;
+                line-height: 21px;
+                font-family: 'Nunito', sans-serif;
+            }
+        }
+    }
+}
+
+
+@media(max-width:1024px) {
+    .navbarLeft {
+        .navbarLeftButton {
+            .navbarLeftButtonContainer {
+                display: none;
+            }
+        }
+    }
+}

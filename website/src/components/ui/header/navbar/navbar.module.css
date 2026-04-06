@@ -1,0 +1,36 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 85%;;
+    max-width: 1216px;
+    margin: 0 auto;
+
+    .navbarRightContainer {
+        .navbarDesktop {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbarMobile {
+            display: none;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 12px 0 ;
+        width: 90%;
+        .navbarRightContainer {
+            .navbarDesktop {
+                display: none;
+            }
+            .navbarMobile {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+        }
+    }
+}

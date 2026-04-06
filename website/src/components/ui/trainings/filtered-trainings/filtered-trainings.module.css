@@ -1,0 +1,44 @@
+.filteredTrainings {
+  .filteredTrainingsList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    flex: 1;
+    min-height: 1190.14px;
+
+    .training {
+      max-width: 384px;
+    }
+  }
+}
+
+.loader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+}
+
+@media (max-width: 1200px) {
+  .filteredTrainings {
+    .filteredTrainingsList {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .filteredTrainings {
+    .filteredTrainingsList {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .filteredTrainings {
+    width: 100%;
+  }
+}
